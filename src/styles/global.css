@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-grey-10: #1a1a1a;
+  --color-grey-15: #262626;
+  --color-grey-16: #282828;
+  --color-grey-53: #888888;
+  --color-grey-92: #ffd6ee;
+  --color-red-10: #330000;
+
+  /* Fonts */
+  --font-sans: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Wanted Sans Variable', 'Wanted Sans', 'Pretendard Variable', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: linear-gradient(123.68deg, #d8d7dc 0%, #d6c4d1 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
