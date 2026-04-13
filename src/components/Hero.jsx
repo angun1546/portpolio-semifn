@@ -1,30 +1,8 @@
-import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
+import { useRef } from 'react'
 
 const HERO_IMG = 'https://www.figma.com/api/mcp/asset/7d7f07a2-278a-4842-afe1-01f8ce31b877'
 
-const TICKER_TEXT = "경험설계자: 만드는 사람이 아닌 '겪게 하는 사람' · 유연한 구조 설계: 변화에 무너지지 않는 태도 · 예술적 사고: 결과보다 과정을 중시하는 방식 · "
-
 export default function Hero() {
-  const tickerInnerRef = useRef(null)
-
-  useEffect(() => {
-    const inner = tickerInnerRef.current
-    if (!inner) return
-
-    const singleW = inner.scrollWidth / 2
-    const ctx = gsap.context(() => {
-      gsap.to(inner, {
-        x: -singleW,
-        duration: 22,
-        repeat: -1,
-        ease: 'none',
-      })
-    })
-
-    return () => ctx.revert()
-  }, [])
-
   return (
     <section
       id="hero"
@@ -75,30 +53,6 @@ export default function Hero() {
         >
           연주자같은 디자이너 안건 입니다.
         </h1>
-      </div>
-
-      {/* 티커 바 */}
-      <div
-        className="absolute bottom-0 left-0 right-0 bg-grey-15 overflow-hidden flex items-center"
-        style={{ height: '66.52px' }}
-      >
-        <div
-          ref={tickerInnerRef}
-          className="flex whitespace-nowrap"
-        >
-          <span
-            className="font-display font-bold text-white"
-            style={{ fontSize: '17.6px', lineHeight: '28.16px', paddingRight: '0' }}
-          >
-            {TICKER_TEXT}
-          </span>
-          <span
-            className="font-display font-bold text-white"
-            style={{ fontSize: '17.6px', lineHeight: '28.16px' }}
-          >
-            {TICKER_TEXT}
-          </span>
-        </div>
       </div>
     </section>
   )

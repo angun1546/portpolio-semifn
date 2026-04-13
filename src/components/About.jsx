@@ -13,6 +13,16 @@ const skills = [
   { text: 'Business Needs', red: false },
 ]
 
+// 안건님이 제공해주신 티커 데이터 및 로직
+const TICKER_ITEMS = [
+  "경험설계자: 만드는 사람이 아닌 '겪게 하는 사람'",
+  "유연한 구조 설계: 변화에 무너지지 않는 태도",
+  "예술적 사고: 결과보다 과정을 중시하는 방식",
+];
+const SEPARATOR = " · ";
+const TICKER_UNIT = TICKER_ITEMS.join(SEPARATOR) + SEPARATOR;
+const SINGLE_TRACK = Array(6).fill(TICKER_UNIT).join("");
+
 function SkillPill({ text, red }) {
   return (
     <div
@@ -78,7 +88,61 @@ export default function About() {
       ref={sectionRef}
       className="py-20"
     >
-      {/* ABOUT ME 대형 타이틀 */}
+      {/* 1. 안건님이 제공해주신 Ticker 구현체 (타이틀 위에 배치) */}
+      <div
+        className="bg-black overflow-hidden w-full mb-10"
+        style={{ height: "66px" }}
+      >
+        <div className="flex items-center h-full">
+          <div
+            style={{
+              display: "flex",
+              whiteSpace: "nowrap",
+              animation: "ticker-scroll 60s linear infinite",
+              willChange: "transform",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "'Wanted Sans', 'Wanted Sans Variable', sans-serif",
+                fontWeight: 700,
+                fontSize: "17.6px",
+                lineHeight: "28.16px",
+                color: "#ffffff",
+                display: "inline-block",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {SINGLE_TRACK}
+            </span>
+            <span
+              style={{
+                fontFamily: "'Wanted Sans', 'Wanted Sans Variable', sans-serif",
+                fontWeight: 700,
+                fontSize: "17.6px",
+                lineHeight: "28.16px",
+                color: "#ffffff",
+                display: "inline-block",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {SINGLE_TRACK}
+            </span>
+          </div>
+        </div>
+        <style>{`
+          @keyframes ticker-scroll {
+            from {
+              transform: translateX(0);
+            }
+            to {
+              transform: translateX(-50%);
+            }
+          }
+        `}</style>
+      </div>
+
+      {/* 2. ABOUT ME 대형 타이틀 */}
       <div
         className="text-center overflow-hidden"
         style={{ padding: '40px 0 20px' }}
@@ -93,17 +157,6 @@ export default function About() {
         >
           ABOUT ME
         </p>
-      </div>
-
-      {/* 무한 루프 티커 (Ticker) */}
-      <div className="ticker-wrapper w-full overflow-hidden py-10 my-10 bg-black/5">
-        <div className="ticker-content flex whitespace-nowrap">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="ticker-item flex items-center">
-              <span className="text-[60px] md:text-[80px] font-black uppercase tracking-tighter px-10">Creative UI/UX Designer — An Gun — Portfolio 2024 —</span>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* 본문 컨테이너 */}
