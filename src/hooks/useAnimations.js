@@ -33,13 +33,25 @@ export const useAnimations = () => {
         onEnterBack: () => updateTheme(bgColor, theme),
       })
     })
+function updateTheme(color, theme) {
+  document.body.style.setProperty('--background', color)
+  if (theme) {
+    document.body.className = theme
+  }
+}
 
-    function updateTheme(color, theme) {
-      document.body.style.setProperty('--background', color)
-      if (theme) {
-        document.body.className = theme
-      }
-    }
+// 3. 무한 루프 티커 (Ticker) 애니메이션
+const tickerContent = document.querySelector('.ticker-content')
+if (tickerContent) {
+  gsap.to('.ticker-content', {
+    xPercent: -33.33, // 3개의 아이템 중 하나만큼 이동
+    duration: 20,
+    ease: 'none',
+    repeat: -1
+  })
+}
+
+// 히어로 섹션 텍스트 애니메이션 예시
 
     // 3. 텍스트 등장 애니메이션 (SplitType)
     const splitTitles = document.querySelectorAll('.split-text')

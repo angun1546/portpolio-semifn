@@ -95,6 +95,17 @@ export default function About() {
         </p>
       </div>
 
+      {/* 무한 루프 티커 (Ticker) */}
+      <div className="ticker-wrapper w-full overflow-hidden py-10 my-10 bg-black/5">
+        <div className="ticker-content flex whitespace-nowrap">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="ticker-item flex items-center">
+              <span className="text-[60px] md:text-[80px] font-black uppercase tracking-tighter px-10">Creative UI/UX Designer — An Gun — Portfolio 2024 —</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* 본문 컨테이너 */}
       <div
         className="mx-auto"

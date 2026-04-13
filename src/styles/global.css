@@ -35,6 +35,16 @@ body {
 html.lenis, html.lenis body {
   height: auto;
 }
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+/* Ticker Styles */
+.ticker-wrapper {
+  display: flex;
+  align-items: center;
 }
+
+.ticker-item {
+  display: inline-block;
+  will-change: transform;
+}
+
