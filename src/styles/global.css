@@ -1,50 +1,62 @@
 @import "tailwindcss";
 
-@theme {
-  /* Colors */
-  --color-grey-10: #1a1a1a;
-  --color-grey-15: #262626;
-  --color-grey-16: #282828;
-  --color-grey-53: #888888;
-  --color-grey-92: #ffd6ee;
-  --color-red-10: #330000;
-
-  /* Fonts */
-  --font-sans: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-display: 'Wanted Sans Variable', 'Wanted Sans', 'Pretendard Variable', sans-serif;
+/* Fonts */
+@font-face {
+  font-family: 'Cafe24Oneprettynight';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
-*, *::before, *::after {
+@font-face {
+  font-family: 'Bazzi';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/Bazzi.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@theme {
+  /* 피그마 Dev Mode에서 추출한 컬러 */
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #eeeeee;
+  --color-near-black: #1a1a1a;
+  
+  /* 폰트 패밀리 등록 */
+  --font-pretendard: 'Pretendard', system-ui, sans-serif;
+  --font-cafe24: 'Cafe24Oneprettynight', sans-serif;
+  --font-bazzi: 'Bazzi', sans-serif;
+
+  /* 기본 및 디스플레이 폰트 설정 */
+  --font-sans: var(--font-pretendard);
+  --font-display: var(--font-cafe24);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
 body {
-  font-family: var(--font-sans);
-  background: linear-gradient(123.68deg, #d8d7dc 0%, #d6c4d1 100%);
-  background-attachment: fixed;
-  min-height: 100vh;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-pretendard);
+  line-height: 1.2;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Lenis smooth scroll */
-html.lenis, html.lenis body {
-  height: auto;
-}
+/* 유틸리티 클래스 */
+.font-cafe24 { font-family: var(--font-cafe24); }
+.font-bazzi { font-family: var(--font-bazzi); }
+
+/* Lenis Smooth Scroll */
+html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
-
-/* Ticker Styles */
-.ticker-wrapper {
-  display: flex;
-  align-items: center;
-}
-
-.ticker-item {
-  display: inline-block;
-  will-change: transform;
-}
-
