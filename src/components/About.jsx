@@ -114,8 +114,8 @@ export default function About() {
         <p
           style={{
             fontFamily: 'var(--font-sans)',
-            fontWeight: 700,
-            fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+            fontWeight: 400,
+            fontSize: '72px',
             lineHeight: '80.64px',
             letterSpacing: '-1.44px',
             color: '#000000',
