@@ -6,7 +6,9 @@ export default function Header() {
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    return () => {
+      document.body.style.overflow = ''
+    }
   }, [isOpen])
 
   useEffect(() => {
@@ -14,7 +16,14 @@ export default function Header() {
       gsap.fromTo(
         '.mobile-nav-link',
         { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: 'power3.out', delay: 0.15 }
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.08,
+          ease: 'power3.out',
+          delay: 0.15,
+        }
       )
     }
   }, [isOpen])
@@ -30,10 +39,14 @@ export default function Header() {
           top: '22px',
           width: 'min(764px, calc(100% - 48px))',
           height: '60px',
-          background: '#222222',
+          background: 'rgba(20, 20, 20, 0.82)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
           borderRadius: '16px',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
           padding: '0 36px 0 157px',
-          boxShadow: '0.445px 0.445px 0.629px rgba(0,0,0,0.26), 1.211px 1.211px 1.712px rgba(0,0,0,0.25), 5.901px 5.901px 8.345px rgba(0,0,0,0.19), 14px 14px 21.213px rgba(0,0,0,0.2)',
+          boxShadow:
+            '0.445px 0.445px 0.629px rgba(0,0,0,0.26), 1.211px 1.211px 1.712px rgba(0,0,0,0.25), 5.901px 5.901px 8.345px rgba(0,0,0,0.19), 14px 14px 21.213px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08)',
         }}
       >
         {/* 데스크탑 네비 */}
@@ -66,7 +79,8 @@ export default function Header() {
               color: '#1a1a1a',
               textDecoration: 'none',
               fontFamily: 'var(--font-sans)',
-              boxShadow: '0.445px 0.445px 0.629px rgba(0,0,0,0.26), 8px 4px 9.21px rgba(0,0,0,0.2), inset 1px 1px 1px rgba(255,255,255,0.7), inset -1px -1px 1px rgba(0,0,0,0.23)',
+              boxShadow:
+                '0.445px 0.445px 0.629px rgba(0,0,0,0.26), 8px 4px 9.21px rgba(0,0,0,0.2), inset 1px 1px 1px rgba(255,255,255,0.7), inset -1px -1px 1px rgba(0,0,0,0.23)',
             }}
           >
             Contact me
@@ -107,7 +121,10 @@ export default function Header() {
               key={item.label}
               href={item.href}
               className="mobile-nav-link font-sans text-white text-center hover:opacity-60 transition-opacity"
-              style={{ fontSize: 'clamp(2.5rem, 8vw, 4rem)', letterSpacing: '-1.44px' }}
+              style={{
+                fontSize: 'clamp(2.5rem, 8vw, 4rem)',
+                letterSpacing: '-1.44px',
+              }}
               onClick={closeMenu}
             >
               {item.label}
