@@ -36,8 +36,49 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #000000;
+  /* Light Theme Variables */
+  --bg: #ffffff;
+  --fg: #000000;
+  --fg-near: #1a1a1a;
+  --fg-sub: #737373;
+  --fg-sub-light: #888888;
+  --fg-accent: #9747ff;
+  --card-bg: #f8f8f8;
+  --divider: #dbdbdb;
+  --header-bg: rgba(20, 20, 20, 0.82);
+  --btn-light-bg: rgba(255, 255, 255, 0.852);
+  --btn-dark-bg: #222222;
+  --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme='dark'] {
+  /* Dark Theme Variables (Deep Echo) */
+  --bg: #0c0c0c;
+  --fg: #e5e5e5;
+  --fg-near: #f5f5f5;
+  --fg-sub: #999999;
+  --fg-sub-light: #aaaaaa;
+  --fg-accent: #b177ff;
+  --card-bg: #161616;
+  --divider: #333333;
+  --header-bg: rgba(0, 0, 0, 0.85);
+  --btn-light-bg: rgba(255, 255, 255, 0.1);
+  --btn-dark-bg: #333333;
+}
+
+[data-theme='purple'] {
+  /* Purple Theme Variables (Midnight Purple) */
+  --bg: #1a0b2e;
+  --fg: #f3e8ff;
+  --fg-near: #ffffff;
+  --fg-sub: #c084fc;
+  --fg-sub-light: #a855f7;
+  --fg-accent: #d8b4fe;
+  --card-bg: #2d1b4e;
+  --divider: #4c1d95;
+  --header-bg: rgba(26, 11, 46, 0.85);
+  --btn-light-bg: rgba(216, 180, 254, 0.2);
+  --btn-dark-bg: #4c1d95;
 }
 
 * {
@@ -47,12 +88,13 @@
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--bg);
+  color: var(--fg);
   font-family: var(--font-pretendard);
   line-height: 1.2;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  transition: background-color var(--transition), color var(--transition);
 }
 
 /* 유틸리티 클래스 */
@@ -76,7 +118,7 @@ html {
 
 /* 트랙 = 흰 건반 */
 ::-webkit-scrollbar-track {
-  background: #f5f5f5;
+  background: var(--card-bg);
   border-left: 2px solid #c8c8c8;
   border-right: 1px solid #e0e0e0;
   box-shadow:
@@ -84,17 +126,13 @@ html {
     inset -2px 0 4px rgba(0, 0, 0, 0.06);
 }
 
-/* 썸 = 검은 건반
-   좌우 border로 건반보다 좁게 → 실제 검은 건반 비율
-   하단 radius → 건반 끝 둥근 모양
-   min-height → 너무 짧아지지 않게
-*/
+/* 썸 = 검은 건반 */
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
   border-radius: 0 0 8px 8px;
-  border-left: 5px solid #f5f5f5;
-  border-right: 5px solid #f5f5f5;
-  border-bottom: 2px solid #f5f5f5;
+  border-left: 5px solid var(--card-bg);
+  border-right: 5px solid var(--card-bg);
+  border-bottom: 2px solid var(--card-bg);
   min-height: 80px;
   box-shadow:
     4px 8px 20px rgba(0, 0, 0, 0.6),
@@ -105,29 +143,19 @@ html {
 /* 호버 = 퍼플 건반 */
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #9747ff 0%, #6b21f0 100%);
-  border-left: 5px solid #f5f5f5;
-  border-right: 5px solid #f5f5f5;
+  border-left: 5px solid var(--card-bg);
+  border-right: 5px solid var(--card-bg);
   box-shadow:
     4px 8px 24px rgba(151, 71, 255, 0.7),
     0 0 20px rgba(151, 71, 255, 0.4),
     inset 1px 0 0 rgba(255, 255, 255, 0.25);
 }
 
-/* 클릭 = 눌린 건반 */
-::-webkit-scrollbar-thumb:active {
-  background: linear-gradient(180deg, #7b2fff 0%, #5a10d0 100%);
-  box-shadow:
-    2px 4px 10px rgba(90, 16, 208, 0.8),
-    inset 0 2px 4px rgba(0, 0, 0, 0.4);
-}
-
 /* Firefox */
 * {
   scrollbar-width: auto;
-  scrollbar-color: #111111 #f5f5f5;
+  scrollbar-color: #111111 var(--card-bg);
 }
-
-/* ─────────────────────────────────────────────────────────── */
 
 /* Lenis Smooth Scroll */
 html.lenis,

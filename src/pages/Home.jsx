@@ -10,6 +10,7 @@ import Projects from '../components/Projects'
 import ContactMe from '../components/ContactMe'
 import Footer from '../components/Footer'
 import ScrollToTop from '../components/ScrollToTop'
+import ThemeSwitcher from '../components/ThemeSwitcher'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -38,6 +39,7 @@ export default function Home() {
         <ContactMe />
       </main>
       <Footer />
+      <ThemeSwitcher />
       <ScrollToTop />
     </>
   )

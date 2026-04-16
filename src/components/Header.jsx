@@ -39,14 +39,15 @@ export default function Header() {
           top: '22px',
           width: 'min(764px, calc(100% - 48px))',
           height: '60px',
-          background: 'rgba(20, 20, 20, 0.82)',
+          background: 'var(--header-bg)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
           borderRadius: '16px',
           border: '1px solid rgba(255, 255, 255, 0.1)',
           padding: '0 36px 0 157px',
           boxShadow:
-            '0.445px 0.445px 0.629px rgba(0,0,0,0.26), 1.211px 1.211px 1.712px rgba(0,0,0,0.25), 5.901px 5.901px 8.345px rgba(0,0,0,0.19), 14px 14px 21.213px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08)',
+            '0.445px 0.445px 0.629px rgba(0,0,0,0.26), 1.211px 1.211px 1.712px rgba(0,0,0,0.25), 2.658px 2.658px 3.759px rgba(0,0,0,0.23), 5.901px 5.901px 8.345px rgba(0,0,0,0.19), 14px 14px 21.213px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08)',
+          transition: 'background-color var(--transition)',
         }}
       >
         {/* 데스크탑 네비 */}
@@ -65,6 +66,7 @@ export default function Header() {
           >
             Projects
           </a>
+          
           {/* Contact me 버튼 */}
           <a
             href="#contact"

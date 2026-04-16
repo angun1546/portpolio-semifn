@@ -106,7 +106,7 @@ function InfoRow({ label, value }) {
           fontFamily: 'var(--font-sans)',
           fontWeight: 400,
           fontSize: '16px',
-          color: '#888',
+          color: 'var(--fg-sub-light)',
           width: '56px',
           flexShrink: 0,
           lineHeight: '28px',
@@ -120,7 +120,7 @@ function InfoRow({ label, value }) {
           fontFamily: 'var(--font-sans)',
           fontWeight: 400,
           fontSize: '16px',
-          color: '#262626',
+          color: 'var(--fg-near)',
           lineHeight: '28px',
         }}
       >
@@ -192,7 +192,7 @@ function ProjectItem({ project, index }) {
           fontFamily: 'var(--font-sans)',
           fontWeight: 800,
           fontSize: '98px',
-          color: '#9747ff',
+          color: 'var(--fg-accent)',
           letterSpacing: '-2px',
           textShadow:
             '14px 14px 21.213px rgba(0,0,0,0.2), 0.445px 0.445px 0.629px rgba(0,0,0,0.26)',
@@ -258,9 +258,9 @@ function ProjectItem({ project, index }) {
             <div
               style={{
                 width: '629px',
-                background: '#ffffff',
+                background: 'var(--bg)',
                 borderRadius: '22px',
-                border: '1px solid rgba(0,0,0,0.08)',
+                border: '1px solid rgba(255,255,255,0.1)',
                 padding: '11px',
                 boxSizing: 'border-box',
                 boxShadow:
@@ -301,7 +301,7 @@ function ProjectItem({ project, index }) {
               fontFamily: 'var(--font-sans)',
               fontWeight: 700,
               fontSize: '24px',
-              color: '#0c151d',
+              color: 'var(--fg-near)',
               letterSpacing: '-1px',
               lineHeight: '1.4',
               whiteSpace: 'pre-line',
@@ -322,7 +322,7 @@ function ProjectItem({ project, index }) {
                   fontFamily: 'var(--font-sans)',
                   fontWeight: 400,
                   fontSize: '16px',
-                  color: '#888',
+                  color: 'var(--fg-sub-light)',
                   width: '56px',
                   flexShrink: 0,
                   lineHeight: '28px',
@@ -338,7 +338,7 @@ function ProjectItem({ project, index }) {
                       fontFamily: 'var(--font-sans)',
                       fontWeight: 400,
                       fontSize: '16px',
-                      color: '#262626',
+                      color: 'var(--fg-near)',
                       lineHeight: '28px',
                     }}
                   >
@@ -355,7 +355,7 @@ function ProjectItem({ project, index }) {
                   fontFamily: 'var(--font-sans)',
                   fontWeight: 400,
                   fontSize: '16px',
-                  color: '#888',
+                  color: 'var(--fg-sub-light)',
                   width: '56px',
                   flexShrink: 0,
                   lineHeight: '28px',
@@ -369,7 +369,7 @@ function ProjectItem({ project, index }) {
                   fontFamily: 'var(--font-sans)',
                   fontWeight: 400,
                   fontSize: '16px',
-                  color: '#262626',
+                  color: 'var(--fg-near)',
                   lineHeight: '28px',
                 }}
               >
@@ -384,7 +384,7 @@ function ProjectItem({ project, index }) {
                   fontFamily: 'var(--font-sans)',
                   fontWeight: 400,
                   fontSize: '16px',
-                  color: '#888',
+                  color: 'var(--fg-sub-light)',
                   width: '56px',
                   flexShrink: 0,
                   lineHeight: '28px',
@@ -397,7 +397,7 @@ function ProjectItem({ project, index }) {
                   fontFamily: 'var(--font-sans)',
                   fontWeight: 400,
                   fontSize: '16px',
-                  color: '#262626',
+                  color: 'var(--fg-near)',
                   lineHeight: '28px',
                 }}
               >
@@ -480,7 +480,7 @@ export default function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      style={{ background: '#ffffff', padding: '128px 0 192px' }}
+      style={{ background: 'var(--bg)', padding: '128px 0 192px' }}
     >
       {/* Projects 섹션 타이틀 */}
       <div className="projects-title" style={{ marginBottom: '200px' }}>
@@ -490,7 +490,7 @@ export default function Projects() {
             fontFamily: 'var(--font-sans)',
             fontWeight: 400,
             fontSize: '72px',
-            color: '#000000',
+            color: 'var(--fg)',
             textAlign: 'center',
             letterSpacing: '-1.44px',
             lineHeight: '80.64px',

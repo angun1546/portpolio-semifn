@@ -43,8 +43,8 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative bg-white overflow-hidden"
-      style={{ minHeight: '1024px', paddingBottom: '0' }}
+      className="relative overflow-hidden"
+      style={{ minHeight: '1024px', paddingBottom: '0', background: 'var(--bg)' }}
     >
       {/* 히어로 텍스트 - GNB 아래 중앙 */}
       <div
@@ -57,45 +57,49 @@ export default function Hero() {
           style={{ paddingBottom: '15px', gap: '0' }}
         >
           <span
-            className="font-bazzi text-near-black"
+            className="font-bazzi"
             style={{
               fontSize: 'clamp(2.5rem, 6.67vw, 6rem)',
               letterSpacing: '-1.44px',
               lineHeight: '80.64px',
               padding: '10px',
+              color: 'var(--fg-near)',
             }}
           >
             소음
           </span>
           <span
-            className="font-sans font-extralight text-near-black"
+            className="font-sans font-extralight"
             style={{
               fontSize: 'clamp(2rem, 5vw, 4.5rem)',
               letterSpacing: '-1.44px',
               lineHeight: '80.64px',
               padding: '0 8px',
+              color: 'var(--fg-near)',
             }}
           >
             을
           </span>
           <span
-            className="font-bazzi text-near-black"
+            className="font-bazzi"
             style={{
               fontSize: 'clamp(2.5rem, 6.67vw, 6rem)',
               letterSpacing: '-1.44px',
               lineHeight: '80.64px',
               padding: '10px',
+              color: 'var(--fg-near)',
             }}
           >
             울림
           </span>
           <span
-            className="font-sans font-extralight text-near-black"
+            className="font-sans font-extralight"
             style={{
               fontSize: 'clamp(2rem, 5vw, 4.5rem)',
               letterSpacing: '-1.44px',
               lineHeight: '80.64px',
               paddingLeft: '8px',
+              color: 'var(--fg-near)',
             }}
           >
             으로
@@ -104,11 +108,12 @@ export default function Hero() {
 
         {/* 라인 2 : 시각을 연주하는 안건입니다 */}
         <p
-          className="font-sans font-normal text-near-black text-center"
+          className="font-sans font-normal text-center"
           style={{
             fontSize: 'clamp(2rem, 5vw, 4.5rem)',
             letterSpacing: '-1.44px',
             lineHeight: '80.64px',
+            color: 'var(--fg-near)',
           }}
         >
           경험조율사 안건입니다
@@ -143,7 +148,7 @@ export default function Hero() {
             {...resumeBtn}
             style={{
               ...btnBase,
-              background: '#222222',
+              background: 'var(--btn-dark-bg)',
               color: '#ffffff',
             }}
           >
@@ -163,8 +168,8 @@ export default function Hero() {
             {...githubBtn}
             style={{
               ...btnBase,
-              background: 'rgba(255,255,255,0.852)',
-              color: '#1a1a1a',
+              background: 'var(--btn-light-bg)',
+              color: 'var(--fg-near)',
             }}
           >
             <img

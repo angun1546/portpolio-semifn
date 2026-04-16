@@ -3,7 +3,7 @@ import Btn from './Btn'
 
 export default function ContactMe() {
   return (
-    <section id="contact" style={{ background: '#ffffff' }}>
+    <section id="contact" style={{ background: 'var(--bg)' }}>
       {/* 섹션 타이틀 */}
       <div
         style={{
@@ -24,7 +24,7 @@ export default function ContactMe() {
             fontSize: '72px',
             lineHeight: '80.64px',
             letterSpacing: '-1.44px',
-            color: '#000000',
+            color: 'var(--fg)',
             textAlign: 'center',
             width: '100%',
           }}
@@ -54,7 +54,7 @@ export default function ContactMe() {
               fontSize: '56px',
               lineHeight: '62.72px',
               letterSpacing: '-0.56px',
-              color: '#0c151d',
+              color: 'var(--fg-near)',
               marginBottom: '16px',
             }}
           >
@@ -66,7 +66,7 @@ export default function ContactMe() {
               fontWeight: 400,
               fontSize: '18px',
               lineHeight: '27.9px',
-              color: '#40484e',
+              color: 'var(--fg-sub)',
             }}
           >
             Harmony between Logic and Aesthetic.
@@ -101,7 +101,7 @@ export default function ContactMe() {
             fontWeight: 400,
             fontSize: '14px',
             lineHeight: '19.88px',
-            color: '#40484e',
+            color: 'var(--fg-sub)',
             textAlign: 'center',
           }}
         >

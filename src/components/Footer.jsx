@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: '#222222',
+        background: 'var(--btn-dark-bg)',
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
@@ -10,6 +10,7 @@ export default function Footer() {
         justifyContent: 'center',
         gap: '16px',
         padding: '50px 24px',
+        transition: 'background-color var(--transition)',
       }}
     >
       <p

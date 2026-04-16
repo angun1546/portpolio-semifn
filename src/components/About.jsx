@@ -33,7 +33,7 @@ function InfoRow({ label, value }) {
           fontFamily: 'var(--font-sans)',
           fontWeight: 500,
           lineHeight: '28px',
-          color: '#2c2c2c',
+          color: 'var(--fg-near)',
           whiteSpace: 'pre',
           minWidth: '60px',
         }}
@@ -45,7 +45,7 @@ function InfoRow({ label, value }) {
           fontFamily: 'var(--font-sans)',
           fontWeight: 400,
           lineHeight: '24px',
-          color: '#3a3a3a',
+          color: 'var(--fg-near)',
           width: '9px',
         }}
       >
@@ -56,7 +56,7 @@ function InfoRow({ label, value }) {
           fontFamily: 'var(--font-sans)',
           fontWeight: 400,
           lineHeight: '28px',
-          color: '#737373',
+          color: 'var(--fg-sub)',
           letterSpacing: '-0.5px',
         }}
       >
@@ -82,7 +82,7 @@ function EduRow({ period, desc }) {
           fontWeight: 400,
           fontSize: '16px',
           lineHeight: '24px',
-          color: '#2c2c2c',
+          color: 'var(--fg-near)',
         }}
       >
         {period}
@@ -93,7 +93,7 @@ function EduRow({ period, desc }) {
           fontWeight: 400,
           fontSize: '16px',
           lineHeight: '24px',
-          color: '#747474',
+          color: 'var(--fg-sub)',
         }}
       >
         {desc}
@@ -107,7 +107,7 @@ const sectionLabel = {
   fontWeight: 800,
   fontSize: '20px',
   lineHeight: '1.15',
-  color: '#434343',
+  color: 'var(--fg-near)',
   letterSpacing: '-0.5px',
   marginBottom: '10px',
   display: 'block',
@@ -115,7 +115,7 @@ const sectionLabel = {
 
 export default function About() {
   return (
-    <section id="about" style={{ background: '#ffffff' }}>
+    <section id="about" style={{ background: 'var(--bg)' }}>
       <div
         style={{
           maxWidth: '1088px',
@@ -135,7 +135,7 @@ export default function About() {
             fontSize: '72px',
             lineHeight: '80.64px',
             letterSpacing: '-1.44px',
-            color: '#000000',
+            color: 'var(--fg)',
             textAlign: 'center',
             width: '100%',
           }}
@@ -191,7 +191,7 @@ export default function About() {
                 fontWeight: 400,
                 fontSize: '16px',
                 lineHeight: '24px',
-                color: '#2c2c2c',
+                color: 'var(--fg-near)',
                 display: 'block',
               }}
             >
@@ -203,7 +203,7 @@ export default function About() {
                 fontWeight: 400,
                 fontSize: '16px',
                 lineHeight: '24px',
-                color: '#747474',
+                color: 'var(--fg-sub)',
                 display: 'block',
               }}
             >
