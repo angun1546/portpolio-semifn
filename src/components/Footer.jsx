@@ -1,19 +1,43 @@
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-grey-15 w-full">
-      <div
-        className="mx-auto flex flex-col items-center py-12"
-        style={{ maxWidth: '1260px', padding: '50px 24px' }}
+    <footer
+      style={{
+        background: '#222222',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '16px',
+        padding: '50px 24px',
+      }}
+    >
+      <p
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 400,
+          fontSize: '20px',
+          lineHeight: '62.72px',
+          letterSpacing: '-0.56px',
+          color: '#ffffff',
+          textAlign: 'center',
+        }}
       >
-        {/* CONTACT ME 타이틀 */}
-        <h3
-          className="font-display font-bold text-white text-center mb-8"
-          style={{ fontSize: '32px', lineHeight: '32px' }}
-        >
-          CONTACT ME
-        </h3>
-
-      </div>
+        본 페이지는 상업적 목적이 아닌 개인 포트폴리오용으로 제작되었습니다.
+      </p>
+      <p
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 400,
+          fontSize: '20px',
+          lineHeight: '62.72px',
+          letterSpacing: '-0.56px',
+          color: '#ffffff',
+          textAlign: 'center',
+        }}
+      >
+        © 2026 An Gun. All Rights Reserved.
+      </p>
     </footer>
   )
 }

@@ -1,8 +1,16 @@
-const LOGO_ICON = 'https://www.figma.com/api/mcp/asset/1ad724b7-71d5-440c-80d8-6779cae0c850'
+const LOGO_ICON =
+  'https://www.figma.com/api/mcp/asset/1ad724b7-71d5-440c-80d8-6779cae0c850'
 
-function SectionDivider() {
+function SectionDivider({ iconWhite = false }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', height: '20px', width: '100%' }}>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        height: '20px',
+        width: '100%',
+      }}
+    >
       <div style={{ flex: 1, borderTop: '1px dashed #dbdbdb' }} />
       <div
         style={{
@@ -12,10 +20,15 @@ function SectionDivider() {
           borderRadius: '5.25px',
           overflow: 'hidden',
           flexShrink: 0,
-          boxShadow: '0.445px 0.445px 0.629px rgba(0,0,0,0.26), 1.211px 1.211px 1.712px rgba(0,0,0,0.25), 2.658px 2.658px 3.759px rgba(0,0,0,0.23), 5.901px 5.901px 8.345px rgba(0,0,0,0.19), 14px 14px 21.213px rgba(0,0,0,0.2), inset 1px 1px 1px rgba(255,255,255,0.7), inset -1px -1px 1px rgba(0,0,0,0.23)',
+          boxShadow:
+            '0.445px 0.445px 0.629px rgba(0,0,0,0.26), 1.211px 1.211px 1.712px rgba(0,0,0,0.25), 2.658px 2.658px 3.759px rgba(0,0,0,0.23), 5.901px 5.901px 8.345px rgba(0,0,0,0.19), 14px 14px 21.213px rgba(0,0,0,0.2), inset 1px 1px 1px rgba(255,255,255,0.7), inset -1px -1px 1px rgba(0,0,0,0.23)',
         }}
       >
-        <img src={LOGO_ICON} alt="" style={{ width: '100%', height: '100%', display: 'block' }} />
+        <img
+          src={LOGO_ICON}
+          alt=""
+          style={{ width: '100%', height: '100%', display: 'block', filter: iconWhite ? 'brightness(0) invert(1)' : 'none' }}
+        />
       </div>
       <div style={{ flex: 1, borderTop: '1px dashed #dbdbdb' }} />
     </div>
@@ -33,7 +46,10 @@ const infoRows = [
 ]
 
 const educationRows = [
-  { period: '25.10 - 26.04', desc: 'MBC 아카데미 챗GPT 생성형 AI를 활용한 반응형 웹콘텐츠(영상제작&코딩) 개발기획자 양성과정' },
+  {
+    period: '25.10 - 26.04',
+    desc: 'MBC 아카데미 챗GPT 생성형 AI를 활용한 반응형 웹콘텐츠(영상제작&코딩) 개발기획자 양성과정',
+  },
   { period: '25.04 - 25.09', desc: '당진시 대호지면사무소 산업팀 행정지원' },
   { period: '22.02 - 25.02', desc: '감리교 신학대학원 신학전공석사 졸업' },
   { period: '15.03 - 18.08', desc: '침례신학대학교 교회음악과 졸업' },
@@ -41,7 +57,14 @@ const educationRows = [
 
 function InfoRow({ label, value }) {
   return (
-    <div style={{ display: 'flex', gap: '6px', alignItems: 'center', fontSize: '16px' }}>
+    <div
+      style={{
+        display: 'flex',
+        gap: '6px',
+        alignItems: 'center',
+        fontSize: '16px',
+      }}
+    >
       <span
         style={{
           fontFamily: 'var(--font-sans)',
@@ -54,7 +77,15 @@ function InfoRow({ label, value }) {
       >
         {label}
       </span>
-      <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, lineHeight: '24px', color: '#3a3a3a', width: '9px' }}>
+      <span
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 400,
+          lineHeight: '24px',
+          color: '#3a3a3a',
+          width: '9px',
+        }}
+      >
         :
       </span>
       <span
@@ -74,11 +105,34 @@ function InfoRow({ label, value }) {
 
 function EduRow({ period, desc }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '10px' }}>
-      <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, fontSize: '16px', lineHeight: '24px', color: '#2c2c2c' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '6px',
+        marginBottom: '10px',
+      }}
+    >
+      <span
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 400,
+          fontSize: '16px',
+          lineHeight: '24px',
+          color: '#2c2c2c',
+        }}
+      >
         {period}
       </span>
-      <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, fontSize: '16px', lineHeight: '24px', color: '#747474' }}>
+      <span
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 400,
+          fontSize: '16px',
+          lineHeight: '24px',
+          color: '#747474',
+        }}
+      >
         {desc}
       </span>
     </div>
@@ -155,7 +209,11 @@ export default function About() {
           <span style={sectionLabel}>학력 및 교육사항</span>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             {educationRows.map((row) => (
-              <EduRow key={row.period + row.desc} period={row.period} desc={row.desc} />
+              <EduRow
+                key={row.period + row.desc}
+                period={row.period}
+                desc={row.desc}
+              />
             ))}
           </div>
         </div>
@@ -164,11 +222,29 @@ export default function About() {
         <div>
           <span style={sectionLabel}>자격사항</span>
           <div>
-            <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, fontSize: '16px', lineHeight: '24px', color: '#2c2c2c', display: 'block' }}>
+            <span
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 400,
+                fontSize: '16px',
+                lineHeight: '24px',
+                color: '#2c2c2c',
+                display: 'block',
+              }}
+            >
               15.01.15
             </span>
-            <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, fontSize: '16px', lineHeight: '24px', color: '#747474', display: 'block' }}>
-              1종 보통 운전면허 
+            <span
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 400,
+                fontSize: '16px',
+                lineHeight: '24px',
+                color: '#747474',
+                display: 'block',
+              }}
+            >
+              1종 보통 운전면허
             </span>
           </div>
         </div>

@@ -8,6 +8,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 import imgScreen from '../assets/images/screen1.png'
 import imgScreen2 from '../assets/images/screen2.png'
+import imgScreen3 from '../assets/images/screen3.png'
 
 const PROJECTS = [
   {
@@ -37,7 +38,7 @@ const PROJECTS = [
   {
     number: '02',
     figmaEmbed:
-      'https://embed.figma.com/proto/tFYu71ZQtogvN3P1Qs4XTg/%EB%B8%8C%EB%A3%A8%EB%8B%A4-%EC%BB%A4%ED%94%BC-%ED%94%84%EB%A1%9C%ED%86%A0-%ED%83%80%EC%9E%85-%EA%B5%AC%ED%98%84?node-id=4-2&p=f&viewport=598%2C481%2C0.12&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4%3A59&page-id=0%3A1&embed-host=share',
+      'https://embed.figma.com/proto/tFYu71ZQtogvN3P1Qs4XTg/%EB%B8%8C%EB%A3%A8%EB%8B%A4-%EC%BB%A4%ED%94%BC-%ED%94%84%EB%A1%9C%ED%86%A0-%ED%83%80%EC%9E%85-%EA%B5%AC%ED%98%84?node-id=4-2&p=f&viewport=598%2C481%2C0.12&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4%3A59&page-id=0%3A1&embed-host=share&hide-ui=1&hotspot-hints=0&show-proto-sidebar=0',
     title: '브루다커피(Brewda Coffee)\n브랜드 앱 디자인 & 미디어 프로젝트',
     period: '2주',
     contribution: '60%',
@@ -61,6 +62,33 @@ const PROJECTS = [
     problem:
       '영상 내 \'스노윙 치킨\' 자막 생성 시, 한글 \'스\'의 형태를 AI가 동물 \'소\'로 오인하여 글자 대신 소가 등장하는 그래픽 오류가 발생했으나 텍스트와 이미지를 분리하여 인식하도록 프롬프트를 재구성하고, \'cow\' 등을 부정 프롬프트로 설정해 형태적 왜곡을 차단했습니다.',
     links: { site: '#', github: '#', plan: '#' },
+  },
+  {
+    number: '04',
+    image: imgScreen3,
+    wrapFrame: true,
+    title: '사이트 반응형 구현',
+    period: '3주',
+    contribution: '100%',
+    stack: ['Figma', 'Html5', 'Css'],
+    summary:
+      'Figma 디자인을 기반으로 만들어진 K-Mooc(한국형 온라인 공개강좌) 웹사이트의 반응형 구현입니다. 웹 인터페이스를 재해석한 프론트앤드 작업물입니다. 단순히 화면을 복제하는 것을 넘어, 사용자 경험을 개선하고 시각적 완성도를 높이는 데 주력 했습니다.',
+    problem:
+      '배경 이미지 위에 흰색 텍스트를 배치했을 때, 이미지의 밝은 부분과 글자가 겹쳐 가독성이 현저히 떨어지는 현상이 발생했습니다. CSS의 linear-gradient를 활용하여 이미지 위에 반투명한 검은색 레이어(Overlay)를 씌움으로 해결했습니다.',
+    links: { site: '#', github: '#', plan: '#' },
+  },
+  {
+    number: '05',
+    videoSrc: '/videos/project5.mp4',
+    title: '생성형 AI영상 배너',
+    period: '2일',
+    contribution: '100%',
+    stack: ['Grok', 'Gemini CLI', 'Whisk'],
+    summary:
+      "데이터 기반의 가상 세계로 빨려 들어가는 '몰입의 관문'을 컨셉으로, 현실과 가상의 경계를 허무는 OTT 플랫폼의 비전을 강렬한 시네마틱 영상으로 구현했습니다. 정교한 프롬프트 제어를 통해 워프 효과, 드라마틱한 조명, 눈동자 반사 등 실사급 텍스처와 역동적인 카메라 무빙을 결합하여 플랫폼의 기술적 완성도를 강조했습니다.",
+    problem:
+      "초기 프롬프트에서는 '거실에서 스크린을 보는 남자'와 '판타지 세계'가 단순한 교차 편집(Cut) 형태로 생성되어, VODA가 추구하는 데이터 속으로 빨려 들어가는 몰입감이 시각적으로 충분히 전달되지 않고 흐름이 끊기는 이질감이 발생했습니다. 단순한 장면 묘사를 넘어, 물리적 공간과 가상 공간을 잇는 시각적 매개체(Vortex, Warp)와 카메라 무빙(Dolly-in)에 집중한 기술적 프롬프트로 재설계하여 해결했습니다.",
+    links: { site: '#', github: null, plan: '#' },
   },
 ]
 
@@ -92,11 +120,11 @@ function ProjectItem({ project, index }) {
   return (
     <div
       className="project-item"
-      style={{ width: 'fit-content', margin: '0 auto', paddingTop: index > 0 ? '200px' : '0' }}
+      style={{ width: 'fit-content', margin: '0 auto', paddingTop: index > 0 ? '230px' : '0' }}
     >
       {/* 번호 */}
       <div
-        className="font-sans font-extrabold leading-none mb-4"
+        className="font-sans font-extrabold leading-none mb-10"
         style={{
           fontSize: '98px',
           color: '#9747ff',
@@ -113,11 +141,31 @@ function ProjectItem({ project, index }) {
       <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
         {/* 왼쪽: 스크린샷 */}
         <div className="shrink-0" style={{ width: '629px' }}>
-          {project.figmaEmbed ? (
+          {project.videoSrc ? (
             <div
               style={{
                 width: '629px',
-                height: '560px',
+                background: '#111',
+                borderRadius: '22px',
+                overflow: 'hidden',
+                boxShadow:
+                  '14px 14px 21px rgba(0,0,0,0.2), 0.5px 0.5px 0.6px rgba(0,0,0,0.26)',
+              }}
+            >
+              <video
+                src={project.videoSrc}
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+              />
+            </div>
+          ) : project.figmaEmbed ? (
+            <div
+              style={{
+                width: '560px',
+                height: '520px',
                 borderRadius: '12px',
                 overflow: 'hidden',
                 backgroundColor: '#FF7F18',
@@ -127,8 +175,8 @@ function ProjectItem({ project, index }) {
             >
               <iframe
                 src={project.figmaEmbed}
-                width="629"
-                height="610"
+                width="560"
+                height="520"
                 allowFullScreen
                 style={{ border: 'none', display: 'block' }}
               />
@@ -262,14 +310,16 @@ function ProjectItem({ project, index }) {
               target="_blank"
               rel="noreferrer"
             />
-            <Btn
-              variant="sec"
-              icon="git"
-              label="깃허브"
-              href={project.links.github}
-              target="_blank"
-              rel="noreferrer"
-            />
+            {project.links.github && (
+              <Btn
+                variant="sec"
+                icon="git"
+                label="깃허브"
+                href={project.links.github}
+                target="_blank"
+                rel="noreferrer"
+              />
+            )}
             <Btn
               variant="sec"
               icon="file"
@@ -324,7 +374,7 @@ export default function Projects() {
     <section id="projects" ref={sectionRef} className="py-32 md:py-48 bg-white">
       {/* Projects 섹션 타이틀 */}
       <div className="projects-title" style={{ marginBottom: '200px' }}>
-        <SectionDivider />
+        <SectionDivider iconWhite />
         <h2
           className="font-sans font-normal text-black text-center"
           style={{

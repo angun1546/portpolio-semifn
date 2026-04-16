@@ -6,6 +6,7 @@ import Header from '../components/Header'
 import Hero from '../components/Hero'
 import About from '../components/About'
 import Projects from '../components/Projects'
+import ContactMe from '../components/ContactMe'
 import Footer from '../components/Footer'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -14,9 +15,13 @@ export default function Home() {
   useEffect(() => {
     const lenis = new Lenis()
     lenis.on('scroll', ScrollTrigger.update)
-    gsap.ticker.add((time) => { lenis.raf(time * 1000) })
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000)
+    })
     gsap.ticker.lagSmoothing(0)
-    return () => { lenis.destroy() }
+    return () => {
+      lenis.destroy()
+    }
   }, [])
 
   return (
@@ -26,6 +31,7 @@ export default function Home() {
         <Hero />
         <About />
         <Projects />
+        <ContactMe />
       </main>
       <Footer />
     </>
