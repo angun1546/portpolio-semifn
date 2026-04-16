@@ -7,9 +7,31 @@ export default function ScrollToTop() {
   const btnRef = useRef(null)
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 300)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
+    const lenis = getLenis()
+    
+    // 네이티브 스크롤 감지 폴백
+    const onScrollNative = () => {
+      if (!lenis) setVisible(window.scrollY > 300)
+    }
+
+    // 레니스 스크롤 감지
+    const onScrollLenis = (e) => {
+      setVisible(e.scroll > 300)
+    }
+
+    if (lenis) {
+      lenis.on('scroll', onScrollLenis)
+    } else {
+      window.addEventListener('scroll', onScrollNative)
+    }
+
+    return () => {
+      if (lenis) {
+        lenis.off('scroll', onScrollLenis)
+      } else {
+        window.removeEventListener('scroll', onScrollNative)
+      }
+    }
   }, [])
 
   useEffect(() => {
@@ -50,11 +72,29 @@ export default function ScrollToTop() {
       onMouseDown={onDown}
       onMouseUp={onUp}
       aria-label="맨 위로"
-      className="fixed right-[30px] bottom-[40px] w-[34px] h-[88px] rounded-b-[8px] border-none cursor-pointer outline-[5px] outline-[#f5f5f5] -outline-offset-[5px] flex flex-col items-center justify-center gap-[6px] opacity-0 z-[9999] origin-bottom"
       style={{
+        position: 'fixed',
+        right: '30px',
+        bottom: '40px',
+        width: '34px',
+        height: '88px',
+        borderRadius: '0 0 8px 8px',
+        border: 'none',
+        cursor: 'pointer',
         background: 'linear-gradient(180deg, #1a1a1a 0%, #000000 100%)',
         boxShadow:
           '4px 8px 20px rgba(0,0,0,0.6), inset 1px 0 0 rgba(255,255,255,0.18), inset -1px 0 0 rgba(255,255,255,0.06)',
+        outline: '5px solid #f5f5f5',
+        outlineOffset: '-5px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '6px',
+        opacity: 0,
+        zIndex: 9999,
+        transformOrigin: 'bottom center',
+        pointerEvents: 'none', // 초기 상태 비활성화
       }}
     >
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -66,7 +106,16 @@ export default function ScrollToTop() {
           strokeLinejoin="round"
         />
       </svg>
-      <span className="font-sans font-bold text-[9px] tracking-[0.5px] text-[rgba(255,255,255,0.7)] leading-none">
+      <span
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 700,
+          fontSize: '9px',
+          letterSpacing: '0.5px',
+          color: 'rgba(255,255,255,0.7)',
+          lineHeight: 1,
+        }}
+      >
         TOP
       </span>
     </button>

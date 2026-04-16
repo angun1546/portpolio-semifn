@@ -20,14 +20,46 @@ const educationRows = [
 
 function InfoRow({ label, value }) {
   return (
-    <div className="flex gap-[6px] items-center text-[16px]">
-      <span className="font-sans font-medium leading-[28px] text-[#2c2c2c] whitespace-pre min-w-[60px]">
+    <div
+      style={{
+        display: 'flex',
+        gap: '6px',
+        alignItems: 'center',
+        fontSize: '16px',
+      }}
+    >
+      <span
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 500,
+          lineHeight: '28px',
+          color: '#2c2c2c',
+          whiteSpace: 'pre',
+          minWidth: '60px',
+        }}
+      >
         {label}
       </span>
-      <span className="font-sans font-normal leading-[24px] text-[#3a3a3a] w-[9px]">
+      <span
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 400,
+          lineHeight: '24px',
+          color: '#3a3a3a',
+          width: '9px',
+        }}
+      >
         :
       </span>
-      <span className="font-sans font-normal leading-[28px] text-[#737373] tracking-[-0.5px]">
+      <span
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 400,
+          lineHeight: '28px',
+          color: '#737373',
+          letterSpacing: '-0.5px',
+        }}
+      >
         {value}
       </span>
     </div>
@@ -36,35 +68,99 @@ function InfoRow({ label, value }) {
 
 function EduRow({ period, desc }) {
   return (
-    <div className="flex flex-col gap-[6px] mb-[10px]">
-      <span className="font-sans font-normal text-[16px] leading-[24px] text-[#2c2c2c]">
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '6px',
+        marginBottom: '10px',
+      }}
+    >
+      <span
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 400,
+          fontSize: '16px',
+          lineHeight: '24px',
+          color: '#2c2c2c',
+        }}
+      >
         {period}
       </span>
-      <span className="font-sans font-normal text-[16px] leading-[24px] text-[#747474]">
+      <span
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 400,
+          fontSize: '16px',
+          lineHeight: '24px',
+          color: '#747474',
+        }}
+      >
         {desc}
       </span>
     </div>
   )
 }
 
-const SECTION_LABEL_CLASS = 'font-sans font-extrabold text-[20px] leading-[1.15] text-[#434343] tracking-[-0.5px] mb-[10px] block'
+const sectionLabel = {
+  fontFamily: 'var(--font-sans)',
+  fontWeight: 800,
+  fontSize: '20px',
+  lineHeight: '1.15',
+  color: '#434343',
+  letterSpacing: '-0.5px',
+  marginBottom: '10px',
+  display: 'block',
+}
 
 export default function About() {
   return (
-    <section id="about" className="bg-white">
-      <div className="max-w-[1088px] mx-auto px-[clamp(24px,4vw,0px)] py-[100px] pb-[50px] flex flex-col items-center gap-[20px]">
+    <section id="about" style={{ background: '#ffffff' }}>
+      <div
+        style={{
+          maxWidth: '1088px',
+          margin: '0 auto',
+          padding: '100px clamp(24px, 4vw, 0px) 50px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '20px',
+        }}
+      >
         <SectionDivider />
-        <h2 className="font-sans font-normal text-[72px] leading-[80.64px] tracking-[-1.44px] text-black text-center w-full">
+        <p
+          style={{
+            fontFamily: 'var(--font-sans)',
+            fontWeight: 400,
+            fontSize: '72px',
+            lineHeight: '80.64px',
+            letterSpacing: '-1.44px',
+            color: '#000000',
+            textAlign: 'center',
+            width: '100%',
+          }}
+        >
           About me
-        </h2>
+        </p>
       </div>
 
       {/* 정보 그리드 */}
-      <div className="max-w-[1088px] mx-auto px-[clamp(24px,4vw,0px)] pb-[100px] grid grid-cols-2 gap-x-[20px] gap-y-[40px]">
+      <div
+        style={{
+          maxWidth: '1088px',
+          margin: '0 auto',
+          paddingBottom: '100px',
+          padding: '0 clamp(24px, 4vw, 0px) 100px',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+          columnGap: '20px',
+          rowGap: '40px',
+        }}
+      >
         {/* 인적사항 */}
         <div>
-          <span className={SECTION_LABEL_CLASS}>인적사항</span>
-          <div className="flex flex-col gap-[4px]">
+          <span style={sectionLabel}>인적사항</span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
             {infoRows.map((row) => (
               <InfoRow key={row.label} label={row.label} value={row.value} />
             ))}
@@ -73,8 +169,8 @@ export default function About() {
 
         {/* 학력 및 교육사항 */}
         <div>
-          <span className={SECTION_LABEL_CLASS}>학력 및 교육사항</span>
-          <div className="flex flex-col">
+          <span style={sectionLabel}>학력 및 교육사항</span>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
             {educationRows.map((row) => (
               <EduRow
                 key={row.period + row.desc}
@@ -87,12 +183,30 @@ export default function About() {
 
         {/* 자격사항 */}
         <div>
-          <span className={SECTION_LABEL_CLASS}>자격사항</span>
+          <span style={sectionLabel}>자격사항</span>
           <div>
-            <span className="font-sans font-normal text-[16px] leading-[24px] text-[#2c2c2c] block">
+            <span
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 400,
+                fontSize: '16px',
+                lineHeight: '24px',
+                color: '#2c2c2c',
+                display: 'block',
+              }}
+            >
               15.01.15
             </span>
-            <span className="font-sans font-normal text-[16px] leading-[24px] text-[#747474] block">
+            <span
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 400,
+                fontSize: '16px',
+                lineHeight: '24px',
+                color: '#747474',
+                display: 'block',
+              }}
+            >
               1종 보통 운전면허
             </span>
           </div>

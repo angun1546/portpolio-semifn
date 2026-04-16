@@ -92,13 +92,38 @@ const PROJECTS = [
   },
 ]
 
-function ProjectInfoRow({ label, value }) {
+function InfoRow({ label, value }) {
   return (
-    <div className="flex items-start gap-[40px]">
-      <span className="font-sans font-normal shrink-0 leading-[28px] text-[16px] text-[#888] w-[56px] whitespace-pre">
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'start',
+        gap: '40px',
+      }}
+    >
+      <span
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 400,
+          fontSize: '16px',
+          color: '#888',
+          width: '56px',
+          flexShrink: 0,
+          lineHeight: '28px',
+          whiteSpace: 'pre',
+        }}
+      >
         {label}
       </span>
-      <span className="font-sans font-normal leading-[28px] text-[16px] text-[#262626]">
+      <span
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 400,
+          fontSize: '16px',
+          color: '#262626',
+          lineHeight: '28px',
+        }}
+      >
         {value}
       </span>
     </div>
@@ -118,8 +143,8 @@ function ProjectItem({ project, index }) {
       const rect = item.getBoundingClientRect()
       const cx = rect.left + rect.width / 2
       const cy = rect.top + rect.height / 2
-      const nx = (e.clientX - cx) / (rect.width / 2)
-      const ny = (e.clientY - cy) / (rect.height / 2)
+      const nx = (e.clientX - cx) / (rect.width / 2)   // -1 ~ 1
+      const ny = (e.clientY - cy) / (rect.height / 2)  // -1 ~ 1
 
       gsap.to(screen, {
         rotateY: nx * 14,
@@ -158,28 +183,44 @@ function ProjectItem({ project, index }) {
   return (
     <div
       ref={itemRef}
-      className="project-item w-fit mx-auto"
-      style={{ paddingTop: index > 0 ? '230px' : '0' }}
+      className="project-item"
+      style={{ width: 'fit-content', margin: '0 auto', paddingTop: index > 0 ? '230px' : '0' }}
     >
       {/* 번호 */}
       <div
-        className="font-sans font-extrabold leading-[1.12] mb-[40px] text-[98px] text-[#9747ff] tracking-[-2px]"
         style={{
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 800,
+          fontSize: '98px',
+          color: '#9747ff',
+          letterSpacing: '-2px',
           textShadow:
             '14px 14px 21.213px rgba(0,0,0,0.2), 0.445px 0.445px 0.629px rgba(0,0,0,0.26)',
+          lineHeight: 1.12,
+          marginBottom: '40px',
         }}
       >
         {project.number}
       </div>
 
       {/* 프로젝트 본문 */}
-      <div className="flex flex-col lg:flex-row gap-[48px] lg:gap-[64px] items-center">
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          gap: '64px',
+          alignItems: 'center',
+        }}
+      >
         {/* 왼쪽: 스크린샷 */}
-        <div ref={screenRef} className="shrink-0 w-[629px] will-change-transform">
+        <div ref={screenRef} style={{ flexShrink: 0, width: '629px', willChange: 'transform' }}>
           {project.videoSrc ? (
             <div
-              className="w-[629px] bg-[#111] rounded-[22px] overflow-hidden"
               style={{
+                width: '629px',
+                background: '#111',
+                borderRadius: '22px',
+                overflow: 'hidden',
                 boxShadow:
                   '14px 14px 21px rgba(0,0,0,0.2), 0.5px 0.5px 0.6px rgba(0,0,0,0.26)',
               }}
@@ -190,13 +231,17 @@ function ProjectItem({ project, index }) {
                 loop
                 muted
                 playsInline
-                className="w-full h-auto block"
+                style={{ width: '100%', height: 'auto', display: 'block' }}
               />
             </div>
           ) : project.figmaEmbed ? (
             <div
-              className="w-[560px] h-[520px] rounded-[12px] overflow-hidden bg-[#FF7F18]"
               style={{
+                width: '560px',
+                height: '520px',
+                borderRadius: '12px',
+                overflow: 'hidden',
+                backgroundColor: '#FF7F18',
                 boxShadow:
                   '14px 14px 21px rgba(0,0,0,0.2), 0.5px 0.5px 0.6px rgba(0,0,0,0.26)',
               }}
@@ -206,13 +251,18 @@ function ProjectItem({ project, index }) {
                 width="560"
                 height="520"
                 allowFullScreen
-                className="border-none block"
+                style={{ border: 'none', display: 'block' }}
               />
             </div>
           ) : project.wrapFrame ? (
             <div
-              className="w-[629px] bg-white rounded-[22px] border border-[rgba(0,0,0,0.08)] p-[11px] box-border"
               style={{
+                width: '629px',
+                background: '#ffffff',
+                borderRadius: '22px',
+                border: '1px solid rgba(0,0,0,0.08)',
+                padding: '11px',
+                boxSizing: 'border-box',
                 boxShadow:
                   '14px 14px 21px rgba(0,0,0,0.2), 0.5px 0.5px 0.6px rgba(0,0,0,0.26)',
               }}
@@ -220,15 +270,22 @@ function ProjectItem({ project, index }) {
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-auto block rounded-[12px]"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
+                  borderRadius: '12px',
+                }}
               />
             </div>
           ) : (
             <img
               src={project.image}
               alt={project.title}
-              className="w-[629px] h-auto block"
               style={{
+                width: '629px',
+                height: 'auto',
+                display: 'block',
                 filter:
                   'drop-shadow(14px 14px 21px rgba(0,0,0,0.2)) drop-shadow(0.5px 0.5px 0.6px rgba(0,0,0,0.26))',
               }}
@@ -237,27 +294,53 @@ function ProjectItem({ project, index }) {
         </div>
 
         {/* 오른쪽: 정보 */}
-        <div className="flex flex-col gap-[20px] w-[496px]">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '496px' }}>
           {/* 타이틀 */}
-          <h3 className="font-sans font-bold leading-[1.4] text-[24px] text-[#0c151d] tracking-[-1px] whitespace-pre-line">
+          <h3
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontWeight: 700,
+              fontSize: '24px',
+              color: '#0c151d',
+              letterSpacing: '-1px',
+              lineHeight: '1.4',
+              whiteSpace: 'pre-line',
+            }}
+          >
             {project.title}
           </h3>
 
           {/* 메타 정보 */}
-          <div className="flex flex-col gap-[12px]">
-            <ProjectInfoRow label="제작기간" value={project.period} />
-            <ProjectInfoRow label="기 여  도" value={project.contribution} />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <InfoRow label="제작기간" value={project.period} />
+            <InfoRow label="기 여  도" value={project.contribution} />
 
             {/* 기술스택 */}
-            <div className="flex items-start gap-[40px]">
-              <span className="font-sans font-normal shrink-0 leading-[28px] text-[16px] text-[#888] w-[56px]">
+            <div style={{ display: 'flex', alignItems: 'start', gap: '40px' }}>
+              <span
+                style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontWeight: 400,
+                  fontSize: '16px',
+                  color: '#888',
+                  width: '56px',
+                  flexShrink: 0,
+                  lineHeight: '28px',
+                }}
+              >
                 기술스택
               </span>
-              <div className="flex flex-wrap gap-x-[24px] gap-y-[4px]">
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', rowGap: '4px' }}>
                 {project.stack.map((tech) => (
                   <span
                     key={tech}
-                    className="font-sans font-normal leading-[28px] text-[16px] text-[#262626]"
+                    style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontWeight: 400,
+                      fontSize: '16px',
+                      color: '#262626',
+                      lineHeight: '28px',
+                    }}
                   >
                     {tech}
                   </span>
@@ -266,28 +349,65 @@ function ProjectItem({ project, index }) {
             </div>
 
             {/* 개요 */}
-            <div className="flex items-start gap-[40px]">
-              <span className="font-sans font-normal shrink-0 leading-[28px] text-[16px] text-[#888] w-[56px] whitespace-pre">
+            <div style={{ display: 'flex', alignItems: 'start', gap: '40px' }}>
+              <span
+                style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontWeight: 400,
+                  fontSize: '16px',
+                  color: '#888',
+                  width: '56px',
+                  flexShrink: 0,
+                  lineHeight: '28px',
+                  whiteSpace: 'pre',
+                }}
+              >
                 {'개      요'}
               </span>
-              <p className="font-sans font-normal leading-[28px] text-[16px] text-[#262626]">
+              <p
+                style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontWeight: 400,
+                  fontSize: '16px',
+                  color: '#262626',
+                  lineHeight: '28px',
+                }}
+              >
                 {project.summary}
               </p>
             </div>
 
             {/* 문제해결 */}
-            <div className="flex items-start gap-[40px]">
-              <span className="font-sans font-normal shrink-0 leading-[28px] text-[16px] text-[#888] w-[56px]">
+            <div style={{ display: 'flex', alignItems: 'start', gap: '40px' }}>
+              <span
+                style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontWeight: 400,
+                  fontSize: '16px',
+                  color: '#888',
+                  width: '56px',
+                  flexShrink: 0,
+                  lineHeight: '28px',
+                }}
+              >
                 문제해결
               </span>
-              <p className="font-sans font-normal leading-[28px] text-[16px] text-[#262626]">
+              <p
+                style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontWeight: 400,
+                  fontSize: '16px',
+                  color: '#262626',
+                  lineHeight: '28px',
+                }}
+              >
                 {project.problem}
               </p>
             </div>
           </div>
 
           {/* 버튼 */}
-          <div className="flex gap-[16px] mt-[12px] flex-wrap">
+          <div style={{ display: 'flex', gap: '16px', marginTop: '12px', flexWrap: 'wrap' }}>
             <Btn
               variant="cta"
               icon="external-link-alt"
@@ -357,11 +477,26 @@ export default function Projects() {
   }, [])
 
   return (
-    <section id="projects" ref={sectionRef} className="py-32 md:py-48 bg-white">
+    <section
+      id="projects"
+      ref={sectionRef}
+      style={{ background: '#ffffff', padding: '128px 0 192px' }}
+    >
       {/* Projects 섹션 타이틀 */}
-      <div className="projects-title mb-[200px]">
+      <div className="projects-title" style={{ marginBottom: '200px' }}>
         <SectionDivider iconWhite />
-        <h2 className="font-sans font-normal text-black text-center text-[72px] tracking-[-1.44px] leading-[80.64px] mt-[40px]">
+        <h2
+          style={{
+            fontFamily: 'var(--font-sans)',
+            fontWeight: 400,
+            fontSize: '72px',
+            color: '#000000',
+            textAlign: 'center',
+            letterSpacing: '-1.44px',
+            lineHeight: '80.64px',
+            marginTop: '40px',
+          }}
+        >
           Projects
         </h2>
       </div>

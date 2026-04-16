@@ -1,14 +1,13 @@
 /**
  * Btn 컴포넌트
  * variant: "cta" | "sec" | "tir" | "for"
- * icon  : "file" | "angle-right" | "git" | "external-link-alt" | "mail" | "phone"
+ * icon  : "file" | "angle-right" | "git" | "external-link-alt" | "mail" | "phone" (생략 시 아이콘 없음)
  * label : 버튼 텍스트
  * href  : 링크 URL (있으면 <a>, 없으면 <button>)
  */
 
-import { useRef, useEffect, useState } from 'react'
+import { useRef } from 'react'
 import { gsap } from 'gsap'
-import { getLenis } from '../lib/lenisStore'
 
 const STYLES = {
   cta: {
@@ -155,19 +154,31 @@ export default function Btn({
 
   // sublabel 있을 때: [아이콘 + label] 한 row, sublabel은 그 아래
   const inner = sublabel ? (
-    <span className="flex flex-col items-center gap-[2px]">
-      <span className="flex items-center gap-[8px]">
+    <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px' }}>
+      <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         {icon && <BtnIcon kind={icon} color={s.iconColor} />}
         <span
-          className="font-sans font-normal text-[16px] leading-[24px] whitespace-nowrap"
-          style={{ color: s.color }}
+          style={{
+            fontFamily: 'var(--font-sans)',
+            fontWeight: 400,
+            fontSize: '16px',
+            lineHeight: '24px',
+            color: s.color,
+            whiteSpace: 'nowrap',
+          }}
         >
           {label}
         </span>
       </span>
       <span
-        className="font-sans font-normal text-[12px] leading-[16.8px] whitespace-nowrap"
-        style={{ color: s.sublabelColor }}
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 400,
+          fontSize: '12px',
+          lineHeight: '16.8px',
+          color: s.sublabelColor,
+          whiteSpace: 'nowrap',
+        }}
       >
         {sublabel}
       </span>
@@ -177,14 +188,36 @@ export default function Btn({
       {icon && <BtnIcon kind={icon} color={s.iconColor} />}
       {label && (
         <span
-          className="font-sans font-normal text-[18px] leading-[28px] whitespace-nowrap"
-          style={{ color: s.color }}
+          style={{
+            fontFamily: 'var(--font-sans)',
+            fontWeight: 400,
+            fontSize: '18px',
+            lineHeight: '28px',
+            color: s.color,
+            whiteSpace: 'nowrap',
+          }}
         >
           {label}
         </span>
       )}
     </>
   )
+
+  const baseStyle = {
+    position: 'relative',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '20px',
+    padding: '16px 30px',
+    borderRadius: '12px',
+    border: 'none',
+    cursor: 'pointer',
+    background: s.background,
+    boxShadow: s.boxShadow,
+    textDecoration: 'none',
+    ...styleProp,
+  }
 
   const interactionProps = {
     ref: btnRef,
@@ -194,20 +227,14 @@ export default function Btn({
     onMouseUp: onUp,
   }
 
-  const baseClasses = `relative inline-flex items-center justify-center gap-[20px] px-[30px] py-[16px] rounded-[12px] border-none cursor-pointer no-underline ${className}`
-
   if (href) {
     return (
       <a
         href={href}
         target={target}
         rel={rel}
-        className={baseClasses}
-        style={{
-          background: s.background,
-          boxShadow: s.boxShadow,
-          ...styleProp,
-        }}
+        style={baseStyle}
+        className={className}
         {...interactionProps}
       >
         {inner}
@@ -219,12 +246,8 @@ export default function Btn({
     <button
       type="button"
       onClick={onClick}
-      className={baseClasses}
-      style={{
-        background: s.background,
-        boxShadow: s.boxShadow,
-        ...styleProp,
-      }}
+      style={baseStyle}
+      className={className}
       {...interactionProps}
     >
       {inner}
