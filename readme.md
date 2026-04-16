@@ -79,7 +79,8 @@ portpolio-semifn/
 │   │   ├── Projects.jsx
 │   │   ├── ContactMe.jsx
 │   │   ├── Footer.jsx
-│   │   └── Btn.jsx
+│   │   ├── Btn.jsx
+│   │   └── SectionDivider.jsx
 │   ├── hooks/
 │   │   ├── useAnimations.js
 │   │   └── useLenis.js

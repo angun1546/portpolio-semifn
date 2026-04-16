@@ -34,17 +34,11 @@ export default function Header() {
     <>
       {/* GNB - 다크 필 */}
       <header
-        className="fixed z-50 left-1/2 -translate-x-1/2 flex items-center justify-between"
+        className="fixed z-50 left-1/2 -translate-x-1/2 flex items-center justify-between top-[22px] w-[min(764px,calc(100%-48px))] h-[60px] rounded-[16px] border border-[rgba(255,255,255,0.1)] px-[36px] pl-[157px]"
         style={{
-          top: '22px',
-          width: 'min(764px, calc(100% - 48px))',
-          height: '60px',
           background: 'rgba(20, 20, 20, 0.82)',
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
-          borderRadius: '16px',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          padding: '0 36px 0 157px',
           boxShadow:
             '0.445px 0.445px 0.629px rgba(0,0,0,0.26), 1.211px 1.211px 1.712px rgba(0,0,0,0.25), 5.901px 5.901px 8.345px rgba(0,0,0,0.19), 14px 14px 21.213px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08)',
         }}
@@ -53,32 +47,21 @@ export default function Header() {
         <nav className="hidden md:flex items-center justify-between w-full">
           <a
             href="#about"
-            className="font-sans text-white hover:opacity-60 transition-opacity"
-            style={{ fontSize: '16px', lineHeight: '24px' }}
+            className="font-sans text-white hover:opacity-60 transition-opacity text-[16px] leading-[24px]"
           >
             About Me
           </a>
           <a
             href="#projects"
-            className="font-sans text-white hover:opacity-60 transition-opacity"
-            style={{ fontSize: '16px', lineHeight: '24px' }}
+            className="font-sans text-white hover:opacity-60 transition-opacity text-[16px] leading-[24px]"
           >
             Projects
           </a>
           {/* Contact me 버튼 */}
           <a
             href="#contact"
-            className="flex items-center justify-center"
+            className="flex items-center justify-center w-[124px] h-[42px] bg-[#f8f8f8] rounded-[12px] text-[18px] leading-[28px] text-[#1a1a1a] no-underline font-sans"
             style={{
-              width: '124px',
-              height: '42px',
-              background: '#f8f8f8',
-              borderRadius: '12px',
-              fontSize: '18px',
-              lineHeight: '28px',
-              color: '#1a1a1a',
-              textDecoration: 'none',
-              fontFamily: 'var(--font-sans)',
               boxShadow:
                 '0.445px 0.445px 0.629px rgba(0,0,0,0.26), 8px 4px 9.21px rgba(0,0,0,0.2), inset 1px 1px 1px rgba(255,255,255,0.7), inset -1px -1px 1px rgba(0,0,0,0.23)',
             }}
@@ -120,11 +103,7 @@ export default function Header() {
             <a
               key={item.label}
               href={item.href}
-              className="mobile-nav-link font-sans text-white text-center hover:opacity-60 transition-opacity"
-              style={{
-                fontSize: 'clamp(2.5rem, 8vw, 4rem)',
-                letterSpacing: '-1.44px',
-              }}
+              className="mobile-nav-link font-sans text-white text-center hover:opacity-60 transition-opacity text-[clamp(2.5rem,8vw,4rem)] tracking-[-1.44px]"
               onClick={closeMenu}
             >
               {item.label}

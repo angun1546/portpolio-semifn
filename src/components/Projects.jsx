@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { SectionDivider } from './About'
+import SectionDivider from './SectionDivider'
 import Btn from './Btn'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -87,29 +87,18 @@ const PROJECTS = [
     summary:
       "데이터 기반의 가상 세계로 빨려 들어가는 '몰입의 관문'을 컨셉으로, 현실과 가상의 경계를 허무는 OTT 플랫폼의 비전을 강렬한 시네마틱 영상으로 구현했습니다. 정교한 프롬프트 제어를 통해 워프 효과, 드라마틱한 조명, 눈동자 반사 등 실사급 텍스처와 역동적인 카메라 무빙을 결합하여 플랫폼의 기술적 완성도를 강조했습니다.",
     problem:
-      "초기 프롬프트에서는 '거실에서 스크린을 보는 남자'와 '판타지 세계'가 단순한 교차 편집(Cut) 형태로 생성되어, VODA가 추구하는 데이터 속으로 빨려 들어가는 몰입감이 시각적으로 충분히 전달되지 않고 흐름이 끊기는 이질감이 발생했습니다. 단순한 장면 묘사를 넘어, 물리적 공간과 가상 공간을 잇는 시각적 매개체(Vortex, Warp)와 카메라 무빙(Dolly-in)에 집중한 기술적 프롬프트로 재설계하여 해결했습니다.",
+      "초기 프롬프트에서는 '거실에서 스크린을 보는 남자'와 '판타지 세계'가 단순한 교차 편집(Cut) 형태로 생성되어, VODA가 추구하는 데이터 속으로 빨려 들어가는 몰입감이 시각적으로 충분히 전달되지 않고 흐름이 끊기는 이질감이 발생했습니다. 단순한 장면 묘사를 넘어, 물리적 공간과 가상 공간을 잇는 시객적 매개체(Vortex, Warp)와 카메라 무빙(Dolly-in)에 집중한 기술적 프롬프트로 재설계하여 해결했습니다.",
     links: { site: '#', github: null, plan: '#' },
   },
 ]
 
-function InfoRow({ label, value }) {
+function ProjectInfoRow({ label, value }) {
   return (
-    <div className="flex items-start gap-10">
-      <span
-        className="font-sans font-normal shrink-0 leading-7"
-        style={{
-          fontSize: '16px',
-          color: '#888',
-          width: '56px',
-          whiteSpace: 'pre',
-        }}
-      >
+    <div className="flex items-start gap-[40px]">
+      <span className="font-sans font-normal shrink-0 leading-[28px] text-[16px] text-[#888] w-[56px] whitespace-pre">
         {label}
       </span>
-      <span
-        className="font-sans font-normal leading-7"
-        style={{ fontSize: '16px', color: '#262626' }}
-      >
+      <span className="font-sans font-normal leading-[28px] text-[16px] text-[#262626]">
         {value}
       </span>
     </div>
@@ -117,37 +106,80 @@ function InfoRow({ label, value }) {
 }
 
 function ProjectItem({ project, index }) {
+  const itemRef = useRef(null)
+  const screenRef = useRef(null)
+
+  useEffect(() => {
+    const item = itemRef.current
+    const screen = screenRef.current
+    if (!item || !screen) return
+
+    const handleMouseMove = (e) => {
+      const rect = item.getBoundingClientRect()
+      const cx = rect.left + rect.width / 2
+      const cy = rect.top + rect.height / 2
+      const nx = (e.clientX - cx) / (rect.width / 2)
+      const ny = (e.clientY - cy) / (rect.height / 2)
+
+      gsap.to(screen, {
+        rotateY: nx * 14,
+        rotateX: -ny * 9,
+        x: nx * 18,
+        y: ny * 10,
+        scale: 1.04,
+        transformPerspective: 900,
+        transformOrigin: 'center center',
+        duration: 0.5,
+        ease: 'power2.out',
+      })
+    }
+
+    const handleMouseLeave = () => {
+      gsap.to(screen, {
+        rotateY: 0,
+        rotateX: 0,
+        x: 0,
+        y: 0,
+        scale: 1,
+        duration: 0.7,
+        ease: 'power3.out',
+      })
+    }
+
+    item.addEventListener('mousemove', handleMouseMove)
+    item.addEventListener('mouseleave', handleMouseLeave)
+
+    return () => {
+      item.removeEventListener('mousemove', handleMouseMove)
+      item.removeEventListener('mouseleave', handleMouseLeave)
+    }
+  }, [])
+
   return (
     <div
-      className="project-item"
-      style={{ width: 'fit-content', margin: '0 auto', paddingTop: index > 0 ? '230px' : '0' }}
+      ref={itemRef}
+      className="project-item w-fit mx-auto"
+      style={{ paddingTop: index > 0 ? '230px' : '0' }}
     >
       {/* 번호 */}
       <div
-        className="font-sans font-extrabold leading-none mb-10"
+        className="font-sans font-extrabold leading-[1.12] mb-[40px] text-[98px] text-[#9747ff] tracking-[-2px]"
         style={{
-          fontSize: '98px',
-          color: '#9747ff',
-          letterSpacing: '-2px',
           textShadow:
             '14px 14px 21.213px rgba(0,0,0,0.2), 0.445px 0.445px 0.629px rgba(0,0,0,0.26)',
-          lineHeight: 1.12,
         }}
       >
         {project.number}
       </div>
 
       {/* 프로젝트 본문 */}
-      <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+      <div className="flex flex-col lg:flex-row gap-[48px] lg:gap-[64px] items-center">
         {/* 왼쪽: 스크린샷 */}
-        <div className="shrink-0" style={{ width: '629px' }}>
+        <div ref={screenRef} className="shrink-0 w-[629px] will-change-transform">
           {project.videoSrc ? (
             <div
+              className="w-[629px] bg-[#111] rounded-[22px] overflow-hidden"
               style={{
-                width: '629px',
-                background: '#111',
-                borderRadius: '22px',
-                overflow: 'hidden',
                 boxShadow:
                   '14px 14px 21px rgba(0,0,0,0.2), 0.5px 0.5px 0.6px rgba(0,0,0,0.26)',
               }}
@@ -158,17 +190,13 @@ function ProjectItem({ project, index }) {
                 loop
                 muted
                 playsInline
-                style={{ width: '100%', height: 'auto', display: 'block' }}
+                className="w-full h-auto block"
               />
             </div>
           ) : project.figmaEmbed ? (
             <div
+              className="w-[560px] h-[520px] rounded-[12px] overflow-hidden bg-[#FF7F18]"
               style={{
-                width: '560px',
-                height: '520px',
-                borderRadius: '12px',
-                overflow: 'hidden',
-                backgroundColor: '#FF7F18',
                 boxShadow:
                   '14px 14px 21px rgba(0,0,0,0.2), 0.5px 0.5px 0.6px rgba(0,0,0,0.26)',
               }}
@@ -178,18 +206,13 @@ function ProjectItem({ project, index }) {
                 width="560"
                 height="520"
                 allowFullScreen
-                style={{ border: 'none', display: 'block' }}
+                className="border-none block"
               />
             </div>
           ) : project.wrapFrame ? (
             <div
+              className="w-[629px] bg-white rounded-[22px] border border-[rgba(0,0,0,0.08)] p-[11px] box-border"
               style={{
-                width: '629px',
-                background: '#ffffff',
-                borderRadius: '22px',
-                border: '1px solid rgba(0,0,0,0.08)',
-                padding: '11px',
-                boxSizing: 'border-box',
                 boxShadow:
                   '14px 14px 21px rgba(0,0,0,0.2), 0.5px 0.5px 0.6px rgba(0,0,0,0.26)',
               }}
@@ -197,22 +220,15 @@ function ProjectItem({ project, index }) {
               <img
                 src={project.image}
                 alt={project.title}
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block',
-                  borderRadius: '12px',
-                }}
+                className="w-full h-auto block rounded-[12px]"
               />
             </div>
           ) : (
             <img
               src={project.image}
               alt={project.title}
+              className="w-[629px] h-auto block"
               style={{
-                width: '629px',
-                height: 'auto',
-                display: 'block',
                 filter:
                   'drop-shadow(14px 14px 21px rgba(0,0,0,0.2)) drop-shadow(0.5px 0.5px 0.6px rgba(0,0,0,0.26))',
               }}
@@ -221,40 +237,27 @@ function ProjectItem({ project, index }) {
         </div>
 
         {/* 오른쪽: 정보 */}
-        <div className="flex flex-col gap-5" style={{ width: '496px' }}>
+        <div className="flex flex-col gap-[20px] w-[496px]">
           {/* 타이틀 */}
-          <h3
-            className="font-sans font-bold leading-tight"
-            style={{
-              fontSize: '24px',
-              color: '#0c151d',
-              letterSpacing: '-1px',
-              lineHeight: '1.4',
-              whiteSpace: 'pre-line',
-            }}
-          >
+          <h3 className="font-sans font-bold leading-[1.4] text-[24px] text-[#0c151d] tracking-[-1px] whitespace-pre-line">
             {project.title}
           </h3>
 
           {/* 메타 정보 */}
-          <div className="flex flex-col gap-3">
-            <InfoRow label="제작기간" value={project.period} />
-            <InfoRow label="기 여  도" value={project.contribution} />
+          <div className="flex flex-col gap-[12px]">
+            <ProjectInfoRow label="제작기간" value={project.period} />
+            <ProjectInfoRow label="기 여  도" value={project.contribution} />
 
             {/* 기술스택 */}
-            <div className="flex items-start gap-10">
-              <span
-                className="font-sans font-normal shrink-0 leading-7"
-                style={{ fontSize: '16px', color: '#888', width: '56px' }}
-              >
+            <div className="flex items-start gap-[40px]">
+              <span className="font-sans font-normal shrink-0 leading-[28px] text-[16px] text-[#888] w-[56px]">
                 기술스택
               </span>
-              <div className="flex flex-wrap gap-x-6 gap-y-1">
+              <div className="flex flex-wrap gap-x-[24px] gap-y-[4px]">
                 {project.stack.map((tech) => (
                   <span
                     key={tech}
-                    className="font-sans font-normal leading-7"
-                    style={{ fontSize: '16px', color: '#262626' }}
+                    className="font-sans font-normal leading-[28px] text-[16px] text-[#262626]"
                   >
                     {tech}
                   </span>
@@ -263,45 +266,28 @@ function ProjectItem({ project, index }) {
             </div>
 
             {/* 개요 */}
-            <div className="flex items-start gap-10">
-              <span
-                className="font-sans font-normal shrink-0 leading-7"
-                style={{
-                  fontSize: '16px',
-                  color: '#888',
-                  width: '56px',
-                  whiteSpace: 'pre',
-                }}
-              >
+            <div className="flex items-start gap-[40px]">
+              <span className="font-sans font-normal shrink-0 leading-[28px] text-[16px] text-[#888] w-[56px] whitespace-pre">
                 {'개      요'}
               </span>
-              <p
-                className="font-sans font-normal leading-7"
-                style={{ fontSize: '16px', color: '#262626' }}
-              >
+              <p className="font-sans font-normal leading-[28px] text-[16px] text-[#262626]">
                 {project.summary}
               </p>
             </div>
 
             {/* 문제해결 */}
-            <div className="flex items-start gap-10">
-              <span
-                className="font-sans font-normal shrink-0 leading-7"
-                style={{ fontSize: '16px', color: '#888', width: '56px' }}
-              >
+            <div className="flex items-start gap-[40px]">
+              <span className="font-sans font-normal shrink-0 leading-[28px] text-[16px] text-[#888] w-[56px]">
                 문제해결
               </span>
-              <p
-                className="font-sans font-normal leading-7"
-                style={{ fontSize: '16px', color: '#262626' }}
-              >
+              <p className="font-sans font-normal leading-[28px] text-[16px] text-[#262626]">
                 {project.problem}
               </p>
             </div>
           </div>
 
           {/* 버튼 */}
-          <div className="flex gap-4 mt-3 flex-wrap">
+          <div className="flex gap-[16px] mt-[12px] flex-wrap">
             <Btn
               variant="cta"
               icon="external-link-alt"
@@ -373,17 +359,9 @@ export default function Projects() {
   return (
     <section id="projects" ref={sectionRef} className="py-32 md:py-48 bg-white">
       {/* Projects 섹션 타이틀 */}
-      <div className="projects-title" style={{ marginBottom: '200px' }}>
+      <div className="projects-title mb-[200px]">
         <SectionDivider iconWhite />
-        <h2
-          className="font-sans font-normal text-black text-center"
-          style={{
-            fontSize: '72px',
-            letterSpacing: '-1.44px',
-            lineHeight: '80.64px',
-            marginTop: '40px',
-          }}
-        >
+        <h2 className="font-sans font-normal text-black text-center text-[72px] tracking-[-1.44px] leading-[80.64px] mt-[40px]">
           Projects
         </h2>
       </div>
