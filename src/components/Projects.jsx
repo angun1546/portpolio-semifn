@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Link } from 'react-router-dom'
 import SectionDivider from './SectionDivider'
 import Btn from './Btn'
 
@@ -350,19 +351,27 @@ function ProjectItem({ project, index }) {
         {/* 오른쪽: 정보 */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '496px' }}>
           {/* 타이틀 */}
-          <h3
-            style={{
-              fontFamily: 'var(--font-sans)',
-              fontWeight: 700,
-              fontSize: '24px',
-              color: 'var(--fg-near)',
-              letterSpacing: '-1px',
-              lineHeight: '1.4',
-              whiteSpace: 'pre-line',
-            }}
+          <Link
+            to={`/projects/${project.number}`}
+            style={{ textDecoration: 'none' }}
           >
-            {project.title}
-          </h3>
+            <h3
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 700,
+                fontSize: '24px',
+                color: 'var(--fg-near)',
+                letterSpacing: '-1px',
+                lineHeight: '1.4',
+                whiteSpace: 'pre-line',
+                transition: 'opacity 0.2s',
+              }}
+              onMouseEnter={e => e.currentTarget.style.opacity = '0.6'}
+              onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+            >
+              {project.title}
+            </h3>
+          </Link>
 
           {/* 메타 정보 */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
