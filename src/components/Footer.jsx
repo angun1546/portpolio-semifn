@@ -1,3 +1,5 @@
+import iconImg from '../assets/images/icon.png'
+
 export default function Footer() {
   return (
     <footer
@@ -24,8 +26,15 @@ export default function Footer() {
           textAlign: 'center',
         }}
       >
-        본 페이지는 상업적 목적이 아닌 개인 포트폴리오용으로 제작되었습니다.
+        언제든지 준비되어 있는 건입니다! 🔫🔫🔫
       </p>
+
+      <img
+        src={iconImg}
+        alt="안건 포트폴리오 아이콘"
+        style={{ width: '80px', height: '80px', borderRadius: '20px' }}
+      />
+
       <p
         style={{
           fontFamily: 'var(--font-sans)',
