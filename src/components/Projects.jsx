@@ -217,15 +217,29 @@ function ProjectItem({ project, index }) {
     }
   }, [])
 
+  // 프로젝트별 숫자 위치 — 스크린 상단에 살짝 걸쳐 숫자가 보이는 정도
+  const NUM_POS = [
+    { top: '20px',   left: '-35px' },  // 01
+    { top: '130px',  left: '-15px' },  // 02
+    { top: '215px',  left: '-25px' },  // 03
+    { top: '190px',  left: '-25px' },  // 04
+    { top: '290px',  left: '-25px' },  // 05
+  ]
+  const numPos = NUM_POS[index] ?? NUM_POS[0]
+
   return (
     <div
       ref={itemRef}
       className="project-item"
-      style={{ width: 'fit-content', margin: '0 auto', paddingTop: index > 0 ? '230px' : '0' }}
+      style={{ position: 'relative', width: 'fit-content', margin: '0 auto', paddingTop: index > 0 ? '230px' : '0' }}
     >
-      {/* 번호 */}
+      {/* 번호 — 스크린 상단에 걸치게 배치 */}
       <div
         style={{
+          position: 'absolute',
+          top: numPos.top,
+          left: numPos.left,
+          zIndex: 0,
           fontFamily: 'var(--font-sans)',
           fontWeight: 800,
           fontSize: '98px',
@@ -234,7 +248,8 @@ function ProjectItem({ project, index }) {
           textShadow:
             '14px 14px 21.213px rgba(0,0,0,0.2), 0.445px 0.445px 0.629px rgba(0,0,0,0.26)',
           lineHeight: 1.12,
-          marginBottom: '40px',
+          userSelect: 'none',
+          pointerEvents: 'none',
         }}
       >
         {project.number}
@@ -243,6 +258,8 @@ function ProjectItem({ project, index }) {
       {/* 프로젝트 본문 */}
       <div
         style={{
+          position: 'relative',
+          zIndex: 1,
           display: 'flex',
           flexDirection: 'row',
           gap: '64px',
@@ -444,66 +461,63 @@ function ProjectItem({ project, index }) {
           </div>
 
           {/* 버튼 */}
-          <div style={{ display: 'flex', gap: '16px', marginTop: '12px', flexWrap: 'wrap', justifyContent: 'flex-start' }}>
-            {project.links.site && project.links.site !== '#' && (
-              <Btn
-                variant="glass"
-                icon="external-link-alt"
-                label="사이트"
-                href={project.links.site}
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  backdropFilter: 'blur(20px)',
-                  WebkitBackdropFilter: 'blur(20px)',
-                  border: '1px solid var(--btn-glass-border)',
-                }}
-              />
-            )}
-            {project.links.github && (
-              <Btn
-                variant="glass"
-                icon="git"
-                label="깃허브"
-                href={project.links.github}
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  backdropFilter: 'blur(20px)',
-                  WebkitBackdropFilter: 'blur(20px)',
-                  border: '1px solid var(--btn-glass-border)',
-                }}
-              />
-            )}
-            {project.links.video && (
-              <Btn
-                variant="glass"
-                icon="video"
-                label={project.links.videoLabel ?? '광고영상'}
-                href={project.links.video}
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  backdropFilter: 'blur(20px)',
-                  WebkitBackdropFilter: 'blur(20px)',
-                  border: '1px solid var(--btn-glass-border)',
-                }}
-              />
-            )}
-            <Btn
-              variant="glass"
-              icon="file"
-              label="기획서"
-              href={project.links.plan}
-              target="_blank"
-              rel="noreferrer"
-              style={{
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)',
-                border: '1px solid var(--btn-glass-border)',
-              }}
-            />
-          </div>
+          {(() => {
+            const hasSite = project.links.site && project.links.site !== '#'
+            const hasGithub = !!project.links.github
+            const hasVideo = !!project.links.video
+            const primaryIs = hasSite ? 'site' : hasGithub ? 'github' : hasVideo ? 'video' : 'plan'
+            const glassStyle = {
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              border: '1px solid var(--btn-glass-border)',
+            }
+            return (
+              <div style={{ display: 'flex', gap: '16px', marginTop: '12px', flexWrap: 'wrap', justifyContent: 'flex-start' }}>
+                {hasSite && (
+                  <Btn
+                    variant={primaryIs === 'site' ? 'cta' : 'glass'}
+                    icon="external-link-alt"
+                    label="사이트"
+                    href={project.links.site}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={primaryIs !== 'site' ? glassStyle : undefined}
+                  />
+                )}
+                {hasGithub && (
+                  <Btn
+                    variant={primaryIs === 'github' ? 'cta' : 'glass'}
+                    icon="git"
+                    label="깃허브"
+                    href={project.links.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={primaryIs !== 'github' ? glassStyle : undefined}
+                  />
+                )}
+                {hasVideo && (
+                  <Btn
+                    variant={primaryIs === 'video' ? 'cta' : 'glass'}
+                    icon="video"
+                    label={project.links.videoLabel ?? '광고영상'}
+                    href={project.links.video}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={primaryIs !== 'video' ? glassStyle : undefined}
+                  />
+                )}
+                <Btn
+                  variant={primaryIs === 'plan' ? 'cta' : 'glass'}
+                  icon="file"
+                  label="기획서"
+                  href={project.links.plan}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={primaryIs !== 'plan' ? glassStyle : undefined}
+                />
+              </div>
+            )
+          })()}
         </div>
       </div>
     </div>

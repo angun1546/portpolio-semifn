@@ -8,9 +8,11 @@ export default function CustomCursor() {
     const cursor = cursorRef.current
 
     const onMove = (e) => {
+      // 음표 머리 중심이 실제 클릭 포인트에 오도록 오프셋 보정
+      // SVG(26×38, viewBox 18×28) 기준 head center: x≈9px, y≈31px
       gsap.to(cursor, {
-        x: e.clientX,
-        y: e.clientY,
+        x: e.clientX - 9,
+        y: e.clientY - 31,
         duration: 0.12,
         ease: 'power2.out',
       })
@@ -67,7 +69,7 @@ export default function CustomCursor() {
         left: 0,
         pointerEvents: 'none',
         zIndex: 99999,
-        transform: 'translate(-5px, -34px)',
+        transform: 'translate(0px, 0px)',
         userSelect: 'none',
         color: 'var(--cursor-color)',
         filter: 'drop-shadow(0 0 6px var(--cursor-glow))',

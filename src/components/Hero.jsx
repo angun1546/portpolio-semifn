@@ -56,9 +56,9 @@ export default function Hero() {
         start: 'top 80%',
       }
 
-      // 초기 z-index: 이미지 앞(5), 텍스트 뒤(1) → line2가 사진 뒤에 숨어 있음
-      gsap.set(imgWrapRef.current,  { zIndex: 5 })
-      gsap.set(textWrapRef.current, { zIndex: 1 })
+      // 초기 z-index: 텍스트 앞(50), 이미지 뒤(10) → 텍스트가 처음부터 사진 앞에 보임
+      gsap.set(imgWrapRef.current,  { zIndex: 10 })
+      gsap.set(textWrapRef.current, { zIndex: 50 })
 
       // 라인 1 — 오른쪽에서 천천히 슬라이드 인
       gsap.from(line1Ref.current, {
@@ -81,18 +81,42 @@ export default function Hero() {
           ease: 'power3.out',
           delay: 0.55,
         })
-        // 팝 직전 — z-index 전환으로 사진을 뚫고 앞으로
+        // 팝업 — 시작과 동시에 사진 뒤로 z-index 전환
         .to(line2Ref.current, {
           y: -14,
           scale: 1.05,
           duration: 0.26,
           ease: 'power2.out',
           onStart: () => {
-            gsap.set(textWrapRef.current, { zIndex: 20 })
+            gsap.set(textWrapRef.current, { zIndex: 1 })
           },
         })
         // 탱글하게 안착
         .to(line2Ref.current, {
+          y: 0,
+          scale: 1,
+          duration: 1.0,
+          ease: 'elastic.out(1, 0.42)',
+        })
+
+      // ─── 사진 팝업 — 텍스트와 동시에 아래에서 솟구쳐 안착 ────────
+      const tlImg = gsap.timeline({ scrollTrigger: scrollOpts })
+      tlImg
+        .from(imgWrapRef.current, {
+          y: 150,
+          opacity: 0,
+          scale: 0.88,
+          duration: 1.2,
+          ease: 'power3.out',
+          delay: 0.35,
+        })
+        .to(imgWrapRef.current, {
+          y: -12,
+          scale: 1.04,
+          duration: 0.28,
+          ease: 'power2.out',
+        })
+        .to(imgWrapRef.current, {
           y: 0,
           scale: 1,
           duration: 1.0,

@@ -167,8 +167,9 @@ export default function ContactMe() {
             border: '1px solid rgba(128,128,128,0.15)',
             display: 'inline-flex',
             alignItems: 'center',
+            justifyContent: 'center',
             gap: '2px',
-            minWidth: '420px',
+            width: '520px',
           }}
         >
           <span ref={textRef} />

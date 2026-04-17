@@ -1,5 +1,20 @@
 import { useState, useEffect } from 'react'
 import { gsap } from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+
+gsap.registerPlugin(ScrollToPlugin)
+
+function smoothScrollTo(href, callback) {
+  const id = href.replace('#', '')
+  const target = document.getElementById(id)
+  if (!target) return
+  gsap.to(window, {
+    scrollTo: { y: target, offsetY: 80 },
+    duration: 0.9,
+    ease: 'power2.inOut',
+    onComplete: callback,
+  })
+}
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -30,13 +45,25 @@ export default function Header() {
 
   const closeMenu = () => setIsOpen(false)
 
+  const handleNavClick = (e, href) => {
+    e.preventDefault()
+    smoothScrollTo(href)
+  }
+
+  const handleMobileNavClick = (e, href) => {
+    e.preventDefault()
+    closeMenu()
+    setTimeout(() => smoothScrollTo(href), 300)
+  }
+
   return (
     <>
       {/* GNB - 다크 필 */}
       <header
-        className="fixed z-50 left-1/2 -translate-x-1/2 flex items-center justify-between"
+        className="fixed left-1/2 -translate-x-1/2 flex items-center justify-between"
         style={{
           top: '22px',
+          zIndex: 200,
           width: 'min(764px, calc(100% - 48px))',
           height: '60px',
           background: 'var(--header-bg)',
@@ -54,6 +81,7 @@ export default function Header() {
         <nav className="hidden md:flex items-center justify-between w-full">
           <a
             href="#about"
+            onClick={(e) => handleNavClick(e, '#about')}
             className="font-sans text-white hover:opacity-60 transition-opacity"
             style={{ fontSize: '16px', lineHeight: '24px' }}
           >
@@ -61,15 +89,17 @@ export default function Header() {
           </a>
           <a
             href="#projects"
+            onClick={(e) => handleNavClick(e, '#projects')}
             className="font-sans text-white hover:opacity-60 transition-opacity"
             style={{ fontSize: '16px', lineHeight: '24px' }}
           >
             Projects
           </a>
-          
+
           {/* Contact me 버튼 */}
           <a
             href="#contact"
+            onClick={(e) => handleNavClick(e, '#contact')}
             className="flex items-center justify-center"
             style={{
               width: '124px',
@@ -92,7 +122,8 @@ export default function Header() {
         {/* 모바일 햄버거 */}
         <div className="md:hidden flex justify-end w-full">
           <button
-            className="flex flex-col gap-1.5 cursor-pointer"
+            className="flex flex-col gap-1.5"
+            style={{ cursor: 'none' }}
             onClick={() => setIsOpen(true)}
           >
             <span className="block w-6 h-0.5 bg-white" />
@@ -104,11 +135,15 @@ export default function Header() {
 
       {/* 모바일 오버레이 */}
       <div
-        className="fixed inset-0 z-[200] bg-black flex flex-col items-center justify-center transition-transform duration-500 ease-in-out"
-        style={{ transform: isOpen ? 'translateY(0)' : 'translateY(-100%)' }}
+        className="fixed inset-0 bg-black flex flex-col items-center justify-center transition-transform duration-500 ease-in-out"
+        style={{
+          zIndex: 300,
+          transform: isOpen ? 'translateY(0)' : 'translateY(-100%)',
+        }}
       >
         <button
           className="absolute top-8 right-8 text-white text-3xl leading-none"
+          style={{ cursor: 'none' }}
           onClick={closeMenu}
         >
           ✕
@@ -127,7 +162,7 @@ export default function Header() {
                 fontSize: 'clamp(2.5rem, 8vw, 4rem)',
                 letterSpacing: '-1.44px',
               }}
-              onClick={closeMenu}
+              onClick={(e) => handleMobileNavClick(e, item.href)}
             >
               {item.label}
             </a>
