@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react'
 import { gsap } from 'gsap'
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
-
-gsap.registerPlugin(ScrollToPlugin)
+import { getLenis } from '../lib/lenisStore'
 
 function smoothScrollTo(href, callback) {
   const id = href.replace('#', '')
   const target = document.getElementById(id)
   if (!target) return
-  gsap.to(window, {
-    scrollTo: { y: target, offsetY: 80 },
-    duration: 0.9,
-    ease: 'power2.inOut',
-    onComplete: callback,
-  })
+
+  const lenis = getLenis()
+  if (lenis) {
+    lenis.scrollTo(target, { offset: -80, duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 4), onComplete: callback })
+  } else {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    callback?.()
+  }
 }
 
 export default function Header() {
