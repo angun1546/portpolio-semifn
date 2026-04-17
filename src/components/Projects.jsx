@@ -219,8 +219,8 @@ function ProjectItem({ project, index }) {
 
   // 프로젝트별 숫자 위치 — 스크린 상단에 살짝 걸쳐 숫자가 보이는 정도
   const NUM_POS = [
-    { top: '20px',   left: '-35px' },  // 01
-    { top: '130px',  left: '-15px' },  // 02
+    { top: '-10px',  left: '-25px' },  // 01
+    { top: '130px',  left: '-25px' },  // 02
     { top: '215px',  left: '-25px' },  // 03
     { top: '190px',  left: '-25px' },  // 04
     { top: '290px',  left: '-25px' },  // 05
