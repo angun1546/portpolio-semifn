@@ -22,7 +22,7 @@
 - React - 19.0.0
 - Vite - 6.0.0
 - TailwindCSS - 4.0.0 (Custom CSS Theme Variables)
-- GSAP - 3.12.5
+- GSAP - 3.12.5 (ScrollTrigger, TextPlugin)
 - Lenis - 1.1.14
 - React Router DOM - 7.0.0
 - split-type - 0.3.4
@@ -34,13 +34,20 @@
 - **테마별 그라디언트 배경** — 스크롤 내릴수록 테마 고유 색상이 자연스럽게 전환되는 전체 페이지 그라디언트 (라이트: 파스텔 플로우 / 다크: 차콜→블랙 / 퍼플: 바이올렛→딥퍼플)
 - **플로팅 테마 스위처** — 화면 좌측 하단에 고정된 피아노 건반 스타일의 테마 전환 버튼
 - **부드러운 스크롤** — Lenis 기반의 관성 스크롤 및 GSAP ScrollTrigger 연동
-- **스크롤 애니메이션** — GSAP을 활용한 섹션별 진입 애니메이션
+- **헤더 스무스 스크롤** — 네비게이션 클릭 시 Lenis.scrollTo()로 해당 섹션으로 부드럽게 이동
+- **히어로 팝업 애니메이션** — 텍스트 2줄 + 프로필 사진이 동시에 아래에서 팝업, 텍스트가 사진 앞에서 팝업된 뒤 사진 뒤로 이동 (z-index 스왑)
+- **히어로 패럴렉스** — 스크롤 시 프로필 사진 시차 이동으로 깊이감 연출, 섹션 pin 효과
+- **스크롤 애니메이션** — GSAP ScrollTrigger를 활용한 섹션별 진입 페이드업 애니메이션
 - **GSAP 타이핑 애니메이션** — TextPlugin + `steps()` easing을 활용해 타이핑→백스페이스 연타→재타이핑 무한 반복 효과 구현 (ContactMe 섹션)
 - **글라스모피즘 디자인** — 헤더 및 버튼에 반투명 블러 효과와 정교한 이너 쉐도우 적용, `glass` variant로 테마별 투명도·테두리 변수 연동
 - **3D 틸트 애니메이션** — 프로젝트 스크린샷에 마우스 팔로우 rotateX/Y 인터랙션 적용
-- **공통 버튼 시스템** — `Btn.jsx` 하나로 아이콘 SVG 처리 및 Elastic 호버 애니메이션 통합 관리 (`cta` / `sec` / `tir` / `for` / `glass` 5가지 variant)
+- **프로젝트 섹션 핀** — 스크롤 시 프로젝트 카드가 뷰포트 상단에 고정 후 다음 카드로 전환
+- **공통 버튼 시스템** — `Btn.jsx` 하나로 아이콘 SVG 처리 및 Elastic 호버 애니메이션 통합 관리 (`cta` / `sec` / `tir` / `for` / `glass` 5가지 variant), 첫 번째 버튼 자동 CTA 지정
+- **8분음표 커스텀 커서** — SVG 8분음표 모양 커서, 테마별 색상 연동, 클릭 시 물 파동 동심원 ripple 효과
 - **스크롤 탑 버튼** — 우측 하단 피아노 건반 디자인, 클릭 시 최상단 부드러운 복귀
-- **반응형 레이아웃** — 모바일·데스크톱 환경에 최적화된 유연한 레이아웃
+- **프로젝트 상세 페이지 라우팅** — React Router 기반 `/projects/:id` 상세 페이지 구조
+- **접근성(a11y) 보완** — aria-label/expanded/controls, 키보드 :focus-visible 포커스 링, iframe title, 장식 이미지 aria-hidden 적용
+- **피아노 건반 스크롤바** — 흰 건반/검은 건반 모티브의 커스텀 스크롤바 디자인
 
 ## 프로젝트 목록
 
@@ -80,23 +87,24 @@ portpolio-semifn/
 │   ├── assets/
 │   │   └── images/
 │   ├── components/
-│   │   ├── Header.jsx
-│   │   ├── Hero.jsx
-│   │   ├── About.jsx
-│   │   ├── Projects.jsx
-│   │   ├── ContactMe.jsx
+│   │   ├── Header.jsx         # GNB, 모바일 햄버거, Lenis 스무스 스크롤
+│   │   ├── Hero.jsx           # 히어로 배너, 팝업 애니메이션, 패럴렉스
+│   │   ├── About.jsx          # 자기소개 섹션
+│   │   ├── Projects.jsx       # 프로젝트 1~5, 핀 스크롤, 3D 틸트
+│   │   ├── ContactMe.jsx      # 연락처, 타이핑 애니메이션
 │   │   ├── Footer.jsx
-│   │   ├── Btn.jsx            # 통합 아이콘 및 애니메이션 버튼
+│   │   ├── Btn.jsx            # 통합 아이콘 및 애니메이션 버튼 (5가지 variant)
 │   │   ├── SectionDivider.jsx # 섹션 구분선 컴포넌트
 │   │   ├── ThemeSwitcher.jsx  # 좌측 하단 테마 전환 스위처
-│   │   └── ScrollToTop.jsx    # 우측 하단 탑 버튼
+│   │   ├── ScrollToTop.jsx    # 우측 하단 피아노 건반 탑 버튼
+│   │   └── CustomCursor.jsx   # 8분음표 커스텀 커서 + 클릭 ripple
 │   ├── lib/
 │   │   └── lenisStore.js      # Lenis 인스턴스 전역 공유
 │   ├── hooks/
-│   │   ├── useAnimations.js
 │   │   └── useLenis.js
 │   ├── pages/
-│   │   └── Home.jsx
+│   │   ├── Home.jsx
+│   │   └── ProjectDetail.jsx  # 프로젝트 상세 페이지 (라우팅 껍데기)
 │   ├── styles/
 │   │   └── global.css         # 테마별 CSS 변수 및 전역 스타일
 │   ├── App.jsx
@@ -124,13 +132,12 @@ npm run preview
 
 ## 개선 예정 사항
 
-개선할 부분:
-- 모바일 반응형 레이아웃 세부 조정
-- 접근성(a11y) 보완
-
 앞으로 추가할 기능:
 - [x] 다크모드 및 멀티 테마 지원 (완료)
-- [ ] 프로젝트 상세 페이지 라우팅
+- [x] 프로젝트 상세 페이지 라우팅 (완료)
+- [x] 접근성(a11y) 보완 (완료)
+- [ ] 모바일 반응형 레이아웃 세부 조정
+- [ ] 프로젝트 상세 페이지 콘텐츠 작성
 
 ## 연락처
 - 이메일: angun1546@gmail.com
