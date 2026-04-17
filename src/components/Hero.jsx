@@ -185,7 +185,7 @@ export default function Hero() {
             {...resumeBtn}
             style={{ ...btnBase, background: 'var(--btn-dark-bg)', color: '#ffffff' }}
           >
-            <img src={ICON_GITHUB} alt="" style={{ width: '25px', height: '25px' }} />
+            <img src={ICON_GITHUB} alt="" aria-hidden="true" style={{ width: '25px', height: '25px' }} />
             이력서보기
           </a>
 
@@ -196,7 +196,7 @@ export default function Hero() {
             {...githubBtn}
             style={{ ...btnBase, background: 'var(--btn-light-bg)', color: 'var(--fg-near)' }}
           >
-            <img src={ICON_FILE} alt="" style={{ width: '25px', height: '25px' }} />
+            <img src={ICON_FILE} alt="" aria-hidden="true" style={{ width: '25px', height: '25px' }} />
             깃허브
           </a>
         </div>

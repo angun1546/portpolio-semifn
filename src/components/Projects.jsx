@@ -306,6 +306,7 @@ function ProjectItem({ project, index }) {
                 width="560"
                 height="520"
                 allowFullScreen
+                title={`${project.title} 피그마 프로토타입`}
                 style={{ border: 'none', display: 'block' }}
               />
             </div>

@@ -78,7 +78,7 @@ export default function Header() {
         }}
       >
         {/* 데스크탑 네비 */}
-        <nav className="hidden md:flex items-center justify-between w-full">
+        <nav className="hidden md:flex items-center justify-between w-full" aria-label="주 내비게이션">
           <a
             href="#about"
             onClick={(e) => handleNavClick(e, '#about')}
@@ -124,11 +124,14 @@ export default function Header() {
           <button
             className="flex flex-col gap-1.5"
             style={{ cursor: 'none' }}
+            aria-label="메뉴 열기"
+            aria-expanded={isOpen}
+            aria-controls="mobile-nav"
             onClick={() => setIsOpen(true)}
           >
-            <span className="block w-6 h-0.5 bg-white" />
-            <span className="block w-6 h-0.5 bg-white" />
-            <span className="block w-4 h-0.5 bg-white" />
+            <span className="block w-6 h-0.5 bg-white" aria-hidden="true" />
+            <span className="block w-6 h-0.5 bg-white" aria-hidden="true" />
+            <span className="block w-4 h-0.5 bg-white" aria-hidden="true" />
           </button>
         </div>
       </header>
@@ -144,11 +147,12 @@ export default function Header() {
         <button
           className="absolute top-8 right-8 text-white text-3xl leading-none"
           style={{ cursor: 'none' }}
+          aria-label="메뉴 닫기"
           onClick={closeMenu}
         >
           ✕
         </button>
-        <nav className="flex flex-col items-center gap-8">
+        <nav id="mobile-nav" className="flex flex-col items-center gap-8" aria-label="모바일 내비게이션">
           {[
             { label: 'About Me', href: '#about' },
             { label: 'Projects', href: '#projects' },
