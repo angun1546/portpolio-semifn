@@ -258,7 +258,7 @@ function ProjectItem({ project, index }) {
             <div
               style={{
                 width: '629px',
-                background: 'var(--bg)',
+                background: 'var(--card-bg)',
                 borderRadius: '22px',
                 border: '1px solid rgba(255,255,255,0.1)',
                 padding: '11px',
@@ -409,30 +409,45 @@ function ProjectItem({ project, index }) {
           {/* 버튼 */}
           <div style={{ display: 'flex', gap: '16px', marginTop: '12px', flexWrap: 'wrap' }}>
             <Btn
-              variant="cta"
+              variant="glass"
               icon="external-link-alt"
               label="사이트"
               href={project.links.site}
               target="_blank"
               rel="noreferrer"
+              style={{
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: '1px solid var(--btn-glass-border)',
+              }}
             />
             {project.links.github && (
               <Btn
-                variant="sec"
+                variant="glass"
                 icon="git"
                 label="깃허브"
                 href={project.links.github}
                 target="_blank"
                 rel="noreferrer"
+                style={{
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  border: '1px solid var(--btn-glass-border)',
+                }}
               />
             )}
             <Btn
-              variant="sec"
+              variant="glass"
               icon="file"
               label="기획서"
               href={project.links.plan}
               target="_blank"
               rel="noreferrer"
+              style={{
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: '1px solid var(--btn-glass-border)',
+              }}
             />
           </div>
         </div>
@@ -480,7 +495,7 @@ export default function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      style={{ background: 'var(--bg)', padding: '128px 0 192px' }}
+      style={{ background: 'transparent', padding: '128px 0 192px' }}
     >
       {/* Projects 섹션 타이틀 */}
       <div className="projects-title" style={{ marginBottom: '200px' }}>

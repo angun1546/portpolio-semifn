@@ -115,7 +115,7 @@ const sectionLabel = {
 
 export default function About() {
   return (
-    <section id="about" style={{ background: 'var(--bg)' }}>
+    <section id="about" style={{ background: 'transparent' }}>
       <div
         style={{
           maxWidth: '1088px',

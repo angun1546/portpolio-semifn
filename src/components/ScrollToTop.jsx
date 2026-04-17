@@ -76,31 +76,43 @@ export default function ScrollToTop() {
         position: 'fixed',
         right: '30px',
         bottom: '40px',
-        width: '34px',
-        height: '88px',
-        borderRadius: '0 0 8px 8px',
-        border: 'none',
+        width: '72px',
+        height: '168px',
+        borderRadius: '0 0 12px 12px',
+        border: '2px solid #1a1a1a',
         cursor: 'pointer',
-        background: 'linear-gradient(180deg, #1a1a1a 0%, #000000 100%)',
-        boxShadow:
-          '4px 8px 20px rgba(0,0,0,0.6), inset 1px 0 0 rgba(255,255,255,0.18), inset -1px 0 0 rgba(255,255,255,0.06)',
-        outline: '5px solid #f5f5f5',
-        outlineOffset: '-5px',
+        background: '#FFFEF8',
+        boxShadow: '3px 6px 20px rgba(0,0,0,0.2)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
+        paddingBottom: '16px',
         gap: '6px',
         opacity: 0,
         zIndex: 9999,
         transformOrigin: 'bottom center',
-        pointerEvents: 'none', // 초기 상태 비활성화
+        pointerEvents: 'none',
       }}
     >
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+      {/* 검은 건반 캡 */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '28px',
+          height: '95px',
+          background: 'linear-gradient(180deg, #2a2a2a 0%, #000000 100%)',
+          borderRadius: '0 0 6px 6px',
+          boxShadow: '0 4px 10px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)',
+        }}
+      />
+      <svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true">
         <path
           d="M2 10L7 4L12 10"
-          stroke="#ffffff"
+          stroke="#1a1a1a"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -112,7 +124,7 @@ export default function ScrollToTop() {
           fontWeight: 700,
           fontSize: '9px',
           letterSpacing: '0.5px',
-          color: 'rgba(255,255,255,0.7)',
+          color: 'rgba(0,0,0,0.55)',
           lineHeight: 1,
         }}
       >

@@ -1,9 +1,59 @@
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { TextPlugin } from 'gsap/TextPlugin'
 import SectionDivider from './SectionDivider'
 import Btn from './Btn'
 
+gsap.registerPlugin(TextPlugin)
+
 export default function ContactMe() {
+  const commitRef = useRef(null)
+
+  useEffect(() => {
+    const el = commitRef.current
+    if (!el) return
+
+    const fullText = 'git commit -m "Keep pushing boundaries and dreaming big"'
+    const halfText = 'git commit -m "Keep pushing'
+    const deleteCount = fullText.length - halfText.length
+    const retypeCount = fullText.length - halfText.length
+
+    const deleteObj = { n: fullText.length }
+    const retypeObj = { n: halfText.length }
+
+    const tl = gsap.timeline({ repeat: -1, repeatDelay: 1.5 })
+
+    // 1. 처음 타이핑 — TextPlugin 선형
+    tl.to(el, { duration: 4, text: { value: fullText, delimiter: '' }, ease: 'none' })
+
+    // 2. 백스페이스 연타 — steps()로 한 글자씩 딱딱딱 끊어서 삭제
+    .to(deleteObj, {
+      n: halfText.length,
+      duration: 0.9,
+      ease: `steps(${deleteCount})`,
+      delay: 0.6,
+      onUpdate() {
+        el.textContent = fullText.slice(0, Math.round(deleteObj.n))
+      },
+    })
+
+    // 3. 다시 타이핑 — steps()로 한 글자씩 끊어서 입력
+    .to(retypeObj, {
+      n: fullText.length,
+      duration: 2,
+      ease: `steps(${retypeCount})`,
+      onUpdate() {
+        el.textContent = fullText.slice(0, Math.round(retypeObj.n))
+      },
+    })
+
+    return () => {
+      tl.kill()
+    }
+  }, [])
+
   return (
-    <section id="contact" style={{ background: 'var(--bg)' }}>
+    <section id="contact" style={{ background: 'transparent' }}>
       {/* 섹션 타이틀 */}
       <div
         style={{
@@ -96,16 +146,21 @@ export default function ContactMe() {
 
         {/* 하단 문구 */}
         <p
+          ref={commitRef}
           style={{
-            fontFamily: 'var(--font-sans)',
+            fontFamily: 'var(--font-mono, "JetBrains Mono", monospace)',
             fontWeight: 400,
             fontSize: '14px',
             lineHeight: '19.88px',
             color: 'var(--fg-sub)',
             textAlign: 'center',
+            cursor: 'pointer',
+            padding: '10px',
+            backgroundColor: 'rgba(0,0,0,0.03)',
+            borderRadius: '4px',
           }}
         >
-          {`git commit -m "Keep pushing boundaries and dreaming big"`}
+          {``}
         </p>
       </div>
     </section>

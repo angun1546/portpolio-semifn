@@ -38,7 +38,8 @@
 :root {
   /* Light Theme Variables */
   --bg: #ffffff;
-  --fg: #000000;
+  --bg-gradient: linear-gradient(180deg, #ffffff 0%, #f3ebff 25%, #fff0f7 55%, #eaf5ff 100%);
+  --fg: #111111;
   --fg-near: #1a1a1a;
   --fg-sub: #737373;
   --fg-sub-light: #888888;
@@ -48,37 +49,45 @@
   --header-bg: rgba(20, 20, 20, 0.82);
   --btn-light-bg: rgba(255, 255, 255, 0.852);
   --btn-dark-bg: #222222;
+  --btn-glass-bg: rgba(15, 15, 15, 0.28);
+  --btn-glass-border: rgba(255, 255, 255, 0.35);
   --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme='dark'] {
   /* Dark Theme Variables (Deep Echo) */
   --bg: #0c0c0c;
-  --fg: #e5e5e5;
-  --fg-near: #f5f5f5;
-  --fg-sub: #999999;
-  --fg-sub-light: #aaaaaa;
+  --bg-gradient: linear-gradient(180deg, #383838 0%, #181818 50%, #000000 100%);
+  --fg: #e8e8e8;
+  --fg-near: #f2f2f2;
+  --fg-sub: #909090;
+  --fg-sub-light: #a8a8a8;
   --fg-accent: #b177ff;
-  --card-bg: #161616;
+  --card-bg: #1e1e1e;
   --divider: #333333;
   --header-bg: rgba(0, 0, 0, 0.85);
-  --btn-light-bg: rgba(255, 255, 255, 0.1);
-  --btn-dark-bg: #333333;
+  --btn-light-bg: rgba(255, 255, 255, 0.08);
+  --btn-dark-bg: #2e2e2e;
+  --btn-glass-bg: rgba(255, 255, 255, 0.08);
+  --btn-glass-border: rgba(255, 255, 255, 0.18);
 }
 
 [data-theme='purple'] {
   /* Purple Theme Variables (Midnight Purple) */
   --bg: #1a0b2e;
-  --fg: #f3e8ff;
+  --bg-gradient: linear-gradient(180deg, #6d28d9 0%, #3b0764 50%, #0f0520 100%);
+  --fg: #f0e6ff;
   --fg-near: #ffffff;
-  --fg-sub: #c084fc;
-  --fg-sub-light: #a855f7;
+  --fg-sub: #c4b5fd;
+  --fg-sub-light: #a78bfa;
   --fg-accent: #d8b4fe;
-  --card-bg: #2d1b4e;
-  --divider: #4c1d95;
-  --header-bg: rgba(26, 11, 46, 0.85);
-  --btn-light-bg: rgba(216, 180, 254, 0.2);
+  --card-bg: rgba(109, 40, 217, 0.18);
+  --divider: rgba(167, 139, 250, 0.25);
+  --header-bg: rgba(15, 5, 32, 0.85);
+  --btn-light-bg: rgba(216, 180, 254, 0.15);
   --btn-dark-bg: #4c1d95;
+  --btn-glass-bg: rgba(15, 5, 30, 0.30);
+  --btn-glass-border: rgba(216, 180, 254, 0.28);
 }
 
 * {
@@ -88,13 +97,13 @@
 }
 
 body {
-  background-color: var(--bg);
+  background: var(--bg-gradient);
   color: var(--fg);
   font-family: var(--font-pretendard);
   line-height: 1.2;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  transition: background-color var(--transition), color var(--transition);
+  transition: background var(--transition), color var(--transition);
 }
 
 /* 유틸리티 클래스 */

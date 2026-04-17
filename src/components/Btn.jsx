@@ -41,6 +41,14 @@ const STYLES = {
       '0.445px 0.445px 0.629px rgba(0,0,0,0.26), 8px 4px 9.21px rgba(0,0,0,0.2), inset 1px 1px 1px rgba(255,255,255,0.7), inset -1px -1px 1px rgba(0,0,0,0.23)',
     iconColor: 'var(--fg-near)',
   },
+  glass: {
+    background: 'var(--btn-glass-bg)',
+    color: '#ffffff',
+    sublabelColor: 'rgba(255,255,255,0.65)',
+    boxShadow:
+      '0.445px 0.445px 0.629px rgba(0,0,0,0.26), 14px 14px 21.213px rgba(0,0,0,0.2), inset 1px 1px 1px rgba(255,255,255,0.10), inset -1px -1px 1px rgba(0,0,0,0.23)',
+    iconColor: '#ffffff',
+  },
 }
 
 function BtnIcon({ kind, color }) {

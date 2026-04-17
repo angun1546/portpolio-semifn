@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { gsap } from 'gsap'
-import bannerImg from '../assets/images/me.png'
+import bannerImg from '../assets/images/profile.png'
 
 const ICON_FILE =
   'https://www.figma.com/api/mcp/asset/68e38d59-ab16-47ea-af1a-a5a25c54fa7a'
@@ -44,7 +44,7 @@ export default function Hero() {
     <section
       id="hero"
       className="relative overflow-hidden"
-      style={{ minHeight: '1024px', paddingBottom: '0', background: 'var(--bg)' }}
+      style={{ minHeight: '1024px', paddingBottom: '0', background: 'transparent' }}
     >
       {/* 히어로 텍스트 - GNB 아래 중앙 */}
       <div
