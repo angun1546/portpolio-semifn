@@ -51,6 +51,9 @@
   --btn-dark-bg: #222222;
   --btn-glass-bg: rgba(15, 15, 15, 0.28);
   --btn-glass-border: rgba(255, 255, 255, 0.35);
+  --hero-fg: #5d4f75;
+  --cursor-color: #1a1a1a;
+  --cursor-glow: rgba(26, 26, 26, 0.4);
   --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -70,6 +73,9 @@
   --btn-dark-bg: #2e2e2e;
   --btn-glass-bg: rgba(255, 255, 255, 0.08);
   --btn-glass-border: rgba(255, 255, 255, 0.18);
+  --hero-fg: #e2d5f8;
+  --cursor-color: #FFFEF8;
+  --cursor-glow: rgba(255, 254, 248, 0.5);
 }
 
 [data-theme='purple'] {
@@ -88,12 +94,16 @@
   --btn-dark-bg: #4c1d95;
   --btn-glass-bg: rgba(15, 5, 30, 0.30);
   --btn-glass-border: rgba(216, 180, 254, 0.28);
+  --hero-fg: #ffffff;
+  --cursor-color: #f0e6ff;
+  --cursor-glow: rgba(216, 180, 254, 0.6);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  cursor: none !important;
 }
 
 body {
@@ -164,6 +174,14 @@ html {
 * {
   scrollbar-width: auto;
   scrollbar-color: #111111 var(--card-bg);
+}
+
+/* ScrollTrigger pin-spacer 클릭 이벤트 투과 */
+.pin-spacer {
+  pointer-events: none;
+}
+.pin-spacer > * {
+  pointer-events: auto;
 }
 
 /* Lenis Smooth Scroll */

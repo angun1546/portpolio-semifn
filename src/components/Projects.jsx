@@ -33,7 +33,11 @@ const PROJECTS = [
       'TMDB API와 생성형 AI를 연동하여 사용자 취향에 최적화된 콘텐츠를 제안하는 OTT 큐레이션 서비스 프로젝트입니다. 기획부터 디자인, 개발에 참여 했으며 픽셀 퍼펙트 UI와 GSAP 기반의 몰입감 있는 인터랙션을 구현했습니다.',
     problem:
       'react-player로 YouTube 예고편 재생 시 일부 영화에서 영상이 표시되지 않고 빈 화면만 나오는 문제점이 생겼습니다. 필터 조건을 Trailer → Teaser → Clip 우선순위 폴백으로 변경하고, 영상이 아예 없는 경우 "예고편 없음" 안내 메시지를 표시했습니다.',
-    links: { site: '#', github: '#', plan: '#' },
+    links: {
+      site: 'https://voda-front.onrender.com',
+      github: 'https://github.com/angun1546/voda.git',
+      plan: 'https://www.figma.com/deck/EVvbKzcfR2xDUUO6LwaHWC',
+    },
   },
   {
     number: '02',
@@ -47,7 +51,11 @@ const PROJECTS = [
       '브랜드 아이덴티티를 디지털 앱 경험으로 확장하기 위해 기획, UX/UI 디자인, 광고 영상 제작 전 과정을 주도한 프로젝트입니다. 60%의 기여도를 바탕으로 직관적인 서비스 설계와 감각적인 미디어를 결합해 일관성 있는 브랜드 몰입감을 구현했습니다.',
     problem:
       '실제 사용자의 핵심 니즈를 놓치던 모호한 페르소나 설정을 \'상황 중심(Context) 분석\'으로 재정의하여 해결했습니다. 이를 통해 바쁜 출근 시간대에 최적화된 \'퀵 오더\' UI를 설계함으로써 주문 단계를 단축하고 실질적인 서비스 효율을 높였습니다.',
-    links: { site: '#', github: '#', plan: '#' },
+    links: {
+      site: 'https://www.figma.com/proto/tFYu71ZQtogvN3P1Qs4XTg/%EB%B8%8C%EB%A3%A8%EB%8B%A4-%EC%BB%A4%ED%94%BC-%ED%94%84%EB%A1%9C%ED%86%A0-%ED%83%80%EC%9E%85-%EA%B5%AC%ED%98%84?node-id=4-2&p=f&viewport=598%2C481%2C0.12&t=6OhDeWw2bfTrRp40-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4%3A59&page-id=0%3A1',
+      video: 'https://drive.google.com/drive/folders/1W46YKBq8Ihewcah1qGBoQ3jEvT3Pya3n?usp=sharing',
+      plan: 'https://www.figma.com/deck/TmiSDz7bdKHpt071O8FwD6/%EC%95%88%EA%B1%B4-3%ED%8C%80-%EA%B8%B0%ED%9A%8D%EC%84%9C?node-id=4001-803&t=RJALUrXbkmuFAepm-1',
+    },
   },
   {
     number: '03',
@@ -61,7 +69,12 @@ const PROJECTS = [
       'AI로 영상을 생성해 기존 광고를 리뉴얼한 영상편집 프로젝트입니다. 제미나이에서 프롬프트를 출력받은 후, 프롬프트를 토대로 위스크에서 이미지를 생성하고, 생성된 이미지를 바탕으로 클링에서 영상을 제작한 후 만든 영상을 광고 오디오 소스와 맞도록 프리미어 프로에서 컷편집을 진행하여 마무리 했습니다.',
     problem:
       '영상 내 \'스노윙 치킨\' 자막 생성 시, 한글 \'스\'의 형태를 AI가 동물 \'소\'로 오인하여 글자 대신 소가 등장하는 그래픽 오류가 발생했으나 텍스트와 이미지를 분리하여 인식하도록 프롬프트를 재구성하고, \'cow\' 등을 부정 프롬프트로 설정해 형태적 왜곡을 차단했습니다.',
-    links: { site: '#', github: '#', plan: '#' },
+    links: {
+      site: '#',
+      video: '#',
+      videoLabel: '영상보기',
+      plan: 'https://drive.google.com/file/d/1hiqnu3qsvy70YyCf7mdhjsYjz4Fy57_O/view?usp=sharing',
+    },
   },
   {
     number: '04',
@@ -75,7 +88,11 @@ const PROJECTS = [
       'Figma 디자인을 기반으로 만들어진 K-Mooc(한국형 온라인 공개강좌) 웹사이트의 반응형 구현입니다. 웹 인터페이스를 재해석한 프론트앤드 작업물입니다. 단순히 화면을 복제하는 것을 넘어, 사용자 경험을 개선하고 시각적 완성도를 높이는 데 주력 했습니다.',
     problem:
       '배경 이미지 위에 흰색 텍스트를 배치했을 때, 이미지의 밝은 부분과 글자가 겹쳐 가독성이 현저히 떨어지는 현상이 발생했습니다. CSS의 linear-gradient를 활용하여 이미지 위에 반투명한 검은색 레이어(Overlay)를 씌움으로 해결했습니다.',
-    links: { site: '#', github: '#', plan: '#' },
+    links: {
+      site: 'https://angun1546.github.io/k-Mooc/',
+      github: 'https://github.com/angun1546/k-Mooc.git',
+      plan: 'https://www.figma.com/design/khrGcMpQHgLdr86v5nOuxH/%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B0%80%EC%9D%B4%EB%93%9C?m=auto&t=xkbmkw9BxnzRrgcR-1',
+    },
   },
   {
     number: '05',
@@ -174,9 +191,29 @@ function ProjectItem({ project, index }) {
     item.addEventListener('mousemove', handleMouseMove)
     item.addEventListener('mouseleave', handleMouseLeave)
 
+    // ─── Effect 3: SCROLL SCRUB ───────────────────────────────
+    // 이미지가 스크롤에 연동되어 위로 살짝 떠오르는 시차 효과
+    gsap.fromTo(
+      screen,
+      { y: 30 },
+      {
+        y: -30,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: item,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5,
+        },
+      }
+    )
+
     return () => {
       item.removeEventListener('mousemove', handleMouseMove)
       item.removeEventListener('mouseleave', handleMouseLeave)
+      ScrollTrigger.getAll()
+        .filter(st => st.vars.trigger === item)
+        .forEach(st => st.kill())
     }
   }, [])
 
@@ -407,26 +444,43 @@ function ProjectItem({ project, index }) {
           </div>
 
           {/* 버튼 */}
-          <div style={{ display: 'flex', gap: '16px', marginTop: '12px', flexWrap: 'wrap' }}>
-            <Btn
-              variant="glass"
-              icon="external-link-alt"
-              label="사이트"
-              href={project.links.site}
-              target="_blank"
-              rel="noreferrer"
-              style={{
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)',
-                border: '1px solid var(--btn-glass-border)',
-              }}
-            />
+          <div style={{ display: 'flex', gap: '16px', marginTop: '12px', flexWrap: 'wrap', justifyContent: 'flex-start' }}>
+            {project.links.site && project.links.site !== '#' && (
+              <Btn
+                variant="glass"
+                icon="external-link-alt"
+                label="사이트"
+                href={project.links.site}
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  border: '1px solid var(--btn-glass-border)',
+                }}
+              />
+            )}
             {project.links.github && (
               <Btn
                 variant="glass"
                 icon="git"
                 label="깃허브"
                 href={project.links.github}
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  border: '1px solid var(--btn-glass-border)',
+                }}
+              />
+            )}
+            {project.links.video && (
+              <Btn
+                variant="glass"
+                icon="video"
+                label={project.links.videoLabel ?? '광고영상'}
+                href={project.links.video}
                 target="_blank"
                 rel="noreferrer"
                 style={{
@@ -473,8 +527,9 @@ export default function Projects() {
         },
       })
 
-      // 프로젝트 아이템 애니메이션
+      // 프로젝트 아이템 — 진입 애니메이션 + 개별 PIN
       gsap.utils.toArray('.project-item').forEach((el) => {
+        // 진입 페이드업
         gsap.from(el, {
           opacity: 0,
           y: 60,
@@ -484,6 +539,15 @@ export default function Projects() {
             trigger: el,
             start: 'top 85%',
           },
+        })
+
+        // 뷰포트 상단에 닿으면 500px 동안 고정
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top top',
+          end: '+=500',
+          pin: true,
+          pinSpacing: true,
         })
       })
     }, sectionRef)

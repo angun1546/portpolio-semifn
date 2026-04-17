@@ -1,6 +1,9 @@
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import bannerImg from '../assets/images/profile.png'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const ICON_FILE =
   'https://www.figma.com/api/mcp/asset/68e38d59-ab16-47ea-af1a-a5a25c54fa7a'
@@ -40,88 +43,99 @@ export default function Hero() {
   const resumeBtn = useBtnGsap()
   const githubBtn = useBtnGsap()
 
+  const line1Ref      = useRef(null)
+  const line2Ref      = useRef(null)
+  const sectionRef    = useRef(null)
+  const textWrapRef   = useRef(null)
+  const imgWrapRef    = useRef(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const scrollOpts = {
+        trigger: sectionRef.current,
+        start: 'top 80%',
+      }
+
+      // 초기 z-index: 이미지 앞(5), 텍스트 뒤(1) → line2가 사진 뒤에 숨어 있음
+      gsap.set(imgWrapRef.current,  { zIndex: 5 })
+      gsap.set(textWrapRef.current, { zIndex: 1 })
+
+      // 라인 1 — 오른쪽에서 천천히 슬라이드 인
+      gsap.from(line1Ref.current, {
+        x: 160,
+        opacity: 0,
+        duration: 1.8,
+        ease: 'power2.out',
+        scrollTrigger: scrollOpts,
+      })
+
+      // 라인 2 — 사진 뒤에서 솟구쳐 팝업 직전에 앞으로 전환
+      const tl2 = gsap.timeline({ scrollTrigger: scrollOpts })
+      tl2
+        // 이미지 뒤, 아래에서 서서히 올라옴
+        .from(line2Ref.current, {
+          y: 200,
+          opacity: 0,
+          scale: 0.82,
+          duration: 1.1,
+          ease: 'power3.out',
+          delay: 0.55,
+        })
+        // 팝 직전 — z-index 전환으로 사진을 뚫고 앞으로
+        .to(line2Ref.current, {
+          y: -14,
+          scale: 1.05,
+          duration: 0.26,
+          ease: 'power2.out',
+          onStart: () => {
+            gsap.set(textWrapRef.current, { zIndex: 20 })
+          },
+        })
+        // 탱글하게 안착
+        .to(line2Ref.current, {
+          y: 0,
+          scale: 1,
+          duration: 1.0,
+          ease: 'elastic.out(1, 0.42)',
+        })
+
+      // ─── Effect 1: PIN ────────────────────────────────────────
+      // 히어로 섹션이 뷰포트 상단에 닿으면 300px 동안 고정
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: 'top top',
+        end: '+=700',
+        pin: true,
+        pinSpacing: true,
+      })
+
+      // ─── Effect 2: PARALLAX ───────────────────────────────────
+      // 프로필 이미지가 스크롤보다 느리게 위로 이동 → 깊이감
+      gsap.to(imgWrapRef.current, {
+        y: -90,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        },
+      })
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
     <section
+      ref={sectionRef}
       id="hero"
-      className="relative overflow-hidden"
+      className="relative"
       style={{ minHeight: '1024px', paddingBottom: '0', background: 'transparent' }}
     >
-      {/* 히어로 텍스트 - GNB 아래 중앙 */}
+      {/* 프로필 사진 */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 text-center"
-        style={{ top: '134px', width: 'min(765px, calc(100% - 48px))' }}
-      >
-        {/* 라인 1 : 소음을 울림으로 */}
-        <div
-          className="flex items-baseline justify-center"
-          style={{ paddingBottom: '15px', gap: '0' }}
-        >
-          <span
-            className="font-bazzi"
-            style={{
-              fontSize: 'clamp(2.5rem, 6.67vw, 6rem)',
-              letterSpacing: '-1.44px',
-              lineHeight: '80.64px',
-              padding: '10px',
-              color: 'var(--fg-near)',
-            }}
-          >
-            소음
-          </span>
-          <span
-            className="font-sans font-extralight"
-            style={{
-              fontSize: 'clamp(2rem, 5vw, 4.5rem)',
-              letterSpacing: '-1.44px',
-              lineHeight: '80.64px',
-              padding: '0 8px',
-              color: 'var(--fg-near)',
-            }}
-          >
-            을
-          </span>
-          <span
-            className="font-bazzi"
-            style={{
-              fontSize: 'clamp(2.5rem, 6.67vw, 6rem)',
-              letterSpacing: '-1.44px',
-              lineHeight: '80.64px',
-              padding: '10px',
-              color: 'var(--fg-near)',
-            }}
-          >
-            울림
-          </span>
-          <span
-            className="font-sans font-extralight"
-            style={{
-              fontSize: 'clamp(2rem, 5vw, 4.5rem)',
-              letterSpacing: '-1.44px',
-              lineHeight: '80.64px',
-              paddingLeft: '8px',
-              color: 'var(--fg-near)',
-            }}
-          >
-            으로
-          </span>
-        </div>
-
-        {/* 라인 2 : 시각을 연주하는 안건입니다 */}
-        <p
-          className="font-sans font-normal text-center"
-          style={{
-            fontSize: 'clamp(2rem, 5vw, 4.5rem)',
-            letterSpacing: '-1.44px',
-            lineHeight: '80.64px',
-            color: 'var(--fg-near)',
-          }}
-        >
-          경험조율사 안건입니다
-        </p>
-      </div>
-
-      {/* 프로필 사진 - 중앙 하단 */}
-      <div
+        ref={imgWrapRef}
         className="absolute left-1/2 -translate-x-1/2"
         style={{
           top: '246px',
@@ -135,51 +149,110 @@ export default function Hero() {
           className="w-full h-full object-cover object-top"
         />
 
-        {/* 버튼 2개 - 사진 하단에 오버레이 */}
+        {/* 버튼 2개 */}
         <div
           className="absolute left-1/2 -translate-x-1/2 flex gap-4 -translate-y-1/2"
           style={{ top: 'calc(50% + 298.5px)', flexWrap: 'nowrap' }}
         >
-          {/* 이력서보기 - 다크 버튼 */}
           <a
             href="https://drive.google.com/file/d/1QWOU7_6ULBB1YmmLka8lJqyii304lkWG/view?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
             {...resumeBtn}
-            style={{
-              ...btnBase,
-              background: 'var(--btn-dark-bg)',
-              color: '#ffffff',
-            }}
+            style={{ ...btnBase, background: 'var(--btn-dark-bg)', color: '#ffffff' }}
           >
-            <img
-              src={ICON_GITHUB}
-              alt=""
-              style={{ width: '25px', height: '25px' }}
-            />
+            <img src={ICON_GITHUB} alt="" style={{ width: '25px', height: '25px' }} />
             이력서보기
           </a>
 
-          {/* 깃허브 - 라이트 버튼 */}
           <a
             href="https://github.com/angun1546"
             target="_blank"
             rel="noopener noreferrer"
             {...githubBtn}
-            style={{
-              ...btnBase,
-              background: 'var(--btn-light-bg)',
-              color: 'var(--fg-near)',
-            }}
+            style={{ ...btnBase, background: 'var(--btn-light-bg)', color: 'var(--fg-near)' }}
           >
-            <img
-              src={ICON_FILE}
-              alt=""
-              style={{ width: '25px', height: '25px' }}
-            />
+            <img src={ICON_FILE} alt="" style={{ width: '25px', height: '25px' }} />
             깃허브
           </a>
         </div>
+      </div>
+
+      {/* 히어로 텍스트 */}
+      <div
+        ref={textWrapRef}
+        className="absolute left-1/2 -translate-x-1/2 text-center"
+        style={{ top: '134px', width: 'min(765px, calc(100% - 48px))' }}
+      >
+        {/* 라인 1 : 소음을 울림으로 */}
+        <div
+          ref={line1Ref}
+          className="flex items-baseline justify-center"
+          style={{ paddingBottom: '15px', gap: '0' }}
+        >
+          <span
+            className="font-bazzi"
+            style={{
+              fontSize: 'clamp(2.5rem, 6.67vw, 6rem)',
+              letterSpacing: '-1.44px',
+              lineHeight: '80.64px',
+              padding: '10px',
+              color: 'var(--hero-fg)',
+            }}
+          >
+            소음
+          </span>
+          <span
+            className="font-sans font-extralight"
+            style={{
+              fontSize: 'clamp(2rem, 5vw, 4.5rem)',
+              letterSpacing: '-1.44px',
+              lineHeight: '80.64px',
+              padding: '0 8px',
+              color: 'var(--hero-fg)',
+            }}
+          >
+            을
+          </span>
+          <span
+            className="font-bazzi"
+            style={{
+              fontSize: 'clamp(2.5rem, 6.67vw, 6rem)',
+              letterSpacing: '-1.44px',
+              lineHeight: '80.64px',
+              padding: '10px',
+              color: 'var(--hero-fg)',
+            }}
+          >
+            울림
+          </span>
+          <span
+            className="font-sans font-extralight"
+            style={{
+              fontSize: 'clamp(2rem, 5vw, 4.5rem)',
+              letterSpacing: '-1.44px',
+              lineHeight: '80.64px',
+              paddingLeft: '8px',
+              color: 'var(--hero-fg)',
+            }}
+          >
+            으로
+          </span>
+        </div>
+
+        {/* 라인 2 : 경험조율사 안건입니다 */}
+        <p
+          ref={line2Ref}
+          className="font-sans font-normal text-center"
+          style={{
+            fontSize: 'clamp(2rem, 5vw, 4.5rem)',
+            letterSpacing: '-1.44px',
+            lineHeight: '80.64px',
+            color: 'var(--hero-fg)',
+          }}
+        >
+          경험조율사 안건입니다
+        </p>
       </div>
     </section>
   )

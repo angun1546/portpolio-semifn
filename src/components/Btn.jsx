@@ -106,6 +106,13 @@ function BtnIcon({ kind, color }) {
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
       </svg>
     )
+  if (kind === 'video')
+    return (
+      <svg style={s} viewBox="0 0 24 24" fill="none">
+        <rect x="2" y="6" width="14" height="12" rx="2" stroke={color} strokeWidth="1.6"/>
+        <path d="M16 9.5L22 6.5V17.5L16 14.5V9.5Z" stroke={color} strokeWidth="1.6" strokeLinejoin="round"/>
+      </svg>
+    )
   if (kind === 'star')
     return (
       <svg style={s} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2">
