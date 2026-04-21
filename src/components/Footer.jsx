@@ -32,7 +32,7 @@ export default function Footer() {
       <img
         src={iconImg}
         alt="안건 포트폴리오 아이콘"
-        style={{ width: '80px', height: '80px', borderRadius: '20px' }}
+        style={{ width: '80px', height: '80px', borderRadius: '20px', filter: 'brightness(0) invert(1)' }}
       />
 
       <p

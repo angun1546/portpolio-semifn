@@ -1,5 +1,4 @@
-const LOGO_ICON =
-  'https://www.figma.com/api/mcp/asset/1ad724b7-71d5-440c-80d8-6779cae0c850'
+import logoIcon from '../assets/images/Logo.svgbl.png'
 
 export default function SectionDivider({ iconWhite = false }) {
   return (
@@ -13,7 +12,7 @@ export default function SectionDivider({ iconWhite = false }) {
         }}
       >
         <img
-          src={LOGO_ICON}
+          src={logoIcon}
           alt=""
           className="w-full h-full block"
           style={{ filter: iconWhite ? 'brightness(0) invert(1)' : 'none' }}

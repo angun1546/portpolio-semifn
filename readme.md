@@ -39,7 +39,7 @@
 - **히어로 패럴렉스** — 스크롤 시 프로필 사진 시차 이동으로 깊이감 연출, 섹션 pin 효과
 - **스크롤 애니메이션** — GSAP ScrollTrigger를 활용한 섹션별 진입 페이드업 애니메이션
 - **GSAP 타이핑 애니메이션** — TextPlugin + `steps()` easing을 활용해 타이핑→백스페이스 연타→재타이핑 무한 반복 효과 구현 (ContactMe 섹션)
-- **글라스모피즘 디자인** — 헤더 및 버튼에 반투명 블러 효과와 정교한 이너 쉐도우 적용, `glass` variant로 테마별 투명도·테두리 변수 연동
+- **글라스모피즘 디자인** — 헤더, 프로젝트 버튼, 히어로 이력서보기 버튼에 반투명 블러 효과와 정교한 이너 쉐도우 적용, `glass` variant 및 테마별 `--resume-btn-glass-bg` 변수로 투명도·테두리 연동
 - **3D 틸트 애니메이션** — 프로젝트 스크린샷에 마우스 팔로우 rotateX/Y 인터랙션 적용
 - **프로젝트 섹션 핀** — 스크롤 시 프로젝트 카드가 뷰포트 상단에 고정 후 다음 카드로 전환
 - **공통 버튼 시스템** — `Btn.jsx` 하나로 아이콘 SVG 처리 및 Elastic 호버 애니메이션 통합 관리 (`cta` / `sec` / `tir` / `for` / `glass` 5가지 variant), 첫 번째 버튼 자동 CTA 지정
@@ -54,7 +54,7 @@
 ### 01. 풀사이클 생성형 AI OTT 서비스
 - 제작기간: 2주 / 기여도: 65%
 - 기술스택: Figma, Premiere Pro, React 19, Vite 7, Python 3, TMDB API, Gemini CLI, Claude CLI
-- TMDB API와 생성형 AI를 연동해 사용자 취향에 최적화된 콘텐츠를 제안하는 OTT 큐레이션 서비스
+- 콘텐츠 선택 피로(Decision Fatigue) 해소를 핵심 가치로, 사용자 여정 지도 기반 추천→탐색→시청 플로우 설계. F-패턴 시선 흐름과 계층적 IA로 홈 화면 재설계
 
 ### 02. 브루다커피(Brewda Coffee) 브랜드 앱 디자인 & 미디어
 - 제작기간: 2주 / 기여도: 60%
@@ -65,6 +65,7 @@
 - 제작기간: 1주 / 기여도: 100%
 - 기술스택: Kling, Premiere Pro, Whisk, Gemini CLI
 - Gemini 프롬프트 → Whisk 이미지 생성 → Kling 영상 제작 → Premiere Pro 컷편집 전 과정 단독 진행
+- 영상보기: https://drive.google.com/file/d/16w1DjmJu9rHk0ZGRGL6FVvuLNN9NtA1k/view?usp=sharing
 
 ### 04. 사이트 반응형 구현
 - 제작기간: 3주 / 기여도: 100%
@@ -75,6 +76,7 @@
 - 제작기간: 2일 / 기여도: 100%
 - 기술스택: Grok, Gemini CLI, Whisk
 - 데이터 기반 가상 세계 몰입 컨셉의 OTT 플랫폼 시네마틱 영상 배너, 프롬프트 제어로 워프·카메라 무빙 구현
+- 영상보기: https://drive.google.com/file/d/1N-M99qoUOE_jJtNEH5foQuwnb5tSzPxu/view?usp=sharing
 
 ## 파일 구조
 

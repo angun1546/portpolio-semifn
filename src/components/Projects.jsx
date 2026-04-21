@@ -31,9 +31,9 @@ const PROJECTS = [
       'Claude CLI',
     ],
     summary:
-      'TMDB API와 생성형 AI를 연동하여 사용자 취향에 최적화된 콘텐츠를 제안하는 OTT 큐레이션 서비스 프로젝트입니다. 기획부터 디자인, 개발에 참여 했으며 픽셀 퍼펙트 UI와 GSAP 기반의 몰입감 있는 인터랙션을 구현했습니다.',
+      '콘텐츠 과부하 시대, 사용자가 "무엇을 볼지 고르는 시간"을 줄이는 것을 핵심 가치로 삼아 기획한 AI 큐레이션 OTT 서비스입니다. 사용자 여정 지도를 바탕으로 추천→탐색→시청 전환 흐름을 최적화했으며, 다크 테마 비주얼과 GSAP 기반 인터랙션으로 플랫폼 고유의 몰입감을 설계했습니다.',
     problem:
-      'react-player로 YouTube 예고편 재생 시 일부 영화에서 영상이 표시되지 않고 빈 화면만 나오는 문제점이 생겼습니다. 필터 조건을 Trailer → Teaser → Clip 우선순위 폴백으로 변경하고, 영상이 아예 없는 경우 "예고편 없음" 안내 메시지를 표시했습니다.',
+      '초기 홈 화면에서 동일한 시각적 가중치로 나열된 콘텐츠가 사용자의 선택 피로(Decision Fatigue)를 유발했습니다. F-패턴 시선 흐름을 적용해 히어로 영역에 AI 추천 콘텐츠를 집중 배치하고, 하단으로 갈수록 장르·무드별로 세분화되는 계층적 정보구조(IA)로 재설계하여 사용자의 자연스러운 탐색을 유도했습니다.',
     links: {
       site: 'https://voda-front.onrender.com',
       github: 'https://github.com/angun1546/voda.git',
@@ -71,8 +71,8 @@ const PROJECTS = [
     problem:
       '영상 내 \'스노윙 치킨\' 자막 생성 시, 한글 \'스\'의 형태를 AI가 동물 \'소\'로 오인하여 글자 대신 소가 등장하는 그래픽 오류가 발생했으나 텍스트와 이미지를 분리하여 인식하도록 프롬프트를 재구성하고, \'cow\' 등을 부정 프롬프트로 설정해 형태적 왜곡을 차단했습니다.',
     links: {
-      site: '#',
-      video: '#',
+      
+      video: 'https://drive.google.com/file/d/16w1DjmJu9rHk0ZGRGL6FVvuLNN9NtA1k/view?usp=sharing',
       videoLabel: '영상보기',
       plan: 'https://drive.google.com/file/d/1hiqnu3qsvy70YyCf7mdhjsYjz4Fy57_O/view?usp=sharing',
     },
@@ -106,7 +106,7 @@ const PROJECTS = [
       "데이터 기반의 가상 세계로 빨려 들어가는 '몰입의 관문'을 컨셉으로, 현실과 가상의 경계를 허무는 OTT 플랫폼의 비전을 강렬한 시네마틱 영상으로 구현했습니다. 정교한 프롬프트 제어를 통해 워프 효과, 드라마틱한 조명, 눈동자 반사 등 실사급 텍스처와 역동적인 카메라 무빙을 결합하여 플랫폼의 기술적 완성도를 강조했습니다.",
     problem:
       "초기 프롬프트에서는 '거실에서 스크린을 보는 남자'와 '판타지 세계'가 단순한 교차 편집(Cut) 형태로 생성되어, VODA가 추구하는 데이터 속으로 빨려 들어가는 몰입감이 시각적으로 충분히 전달되지 않고 흐름이 끊기는 이질감이 발생했습니다. 단순한 장면 묘사를 넘어, 물리적 공간과 가상 공간을 잇는 시객적 매개체(Vortex, Warp)와 카메라 무빙(Dolly-in)에 집중한 기술적 프롬프트로 재설계하여 해결했습니다.",
-    links: { site: '#', github: null, plan: '#' },
+    links: { video: 'https://drive.google.com/file/d/1N-M99qoUOE_jJtNEH5foQuwnb5tSzPxu/view?usp=sharing', videoLabel: '영상보기', plan: '#' },
   },
 ]
 

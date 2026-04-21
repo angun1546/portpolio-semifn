@@ -2,13 +2,9 @@ import { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import bannerImg from '../assets/images/profile.png'
+import protpolioIcon from '../assets/images/protpolio.png'
 
 gsap.registerPlugin(ScrollTrigger)
-
-const ICON_FILE =
-  'https://www.figma.com/api/mcp/asset/68e38d59-ab16-47ea-af1a-a5a25c54fa7a'
-const ICON_GITHUB =
-  'https://www.figma.com/api/mcp/asset/4af55f1b-5ac2-49ef-a612-d807baaa2b35'
 
 const btnBase = {
   display: 'flex',
@@ -183,9 +179,9 @@ export default function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             {...resumeBtn}
-            style={{ ...btnBase, background: 'var(--btn-dark-bg)', color: '#ffffff' }}
+            style={{ ...btnBase, boxSizing: 'border-box', background: 'var(--resume-btn-glass-bg)', color: '#ffffff', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', border: '1px solid var(--btn-glass-border)' }}
           >
-            <img src={ICON_GITHUB} alt="" aria-hidden="true" style={{ width: '25px', height: '25px' }} />
+            <img src={protpolioIcon} alt="" aria-hidden="true" style={{ width: '25px', height: '25px', filter: 'var(--resume-icon-filter)' }} />
             이력서보기
           </a>
 
@@ -196,7 +192,9 @@ export default function Hero() {
             {...githubBtn}
             style={{ ...btnBase, background: 'var(--btn-light-bg)', color: 'var(--fg-near)' }}
           >
-            <img src={ICON_FILE} alt="" aria-hidden="true" style={{ width: '25px', height: '25px' }} />
+            <svg width="25" height="25" viewBox="0 0 25 25" fill="currentColor" aria-hidden="true">
+                <path fillRule="evenodd" clipRule="evenodd" d="M12.5 2.5C7.253 2.5 3 6.753 3 12c0 4.193 2.715 7.754 6.479 9.01.474.087.648-.206.648-.457 0-.225-.008-.824-.013-1.618-2.635.573-3.19-1.27-3.19-1.27-.43-1.093-1.05-1.385-1.05-1.385-.858-.587.065-.575.065-.575.949.067 1.448.975 1.448.975.842 1.443 2.209 1.026 2.749.784.085-.61.33-1.026.6-1.262-2.104-.239-4.314-1.052-4.314-4.682 0-1.034.37-1.88.975-2.542-.098-.24-.422-1.203.092-2.508 0 0 .795-.255 2.604.97a9.07 9.07 0 0 1 2.374-.32c.805.004 1.616.109 2.374.32 1.808-1.225 2.601-.97 2.601-.97.516 1.305.192 2.268.094 2.508.607.662.974 1.508.974 2.542 0 3.64-2.213 4.44-4.322 4.675.34.293.642.871.642 1.756 0 1.267-.012 2.29-.012 2.602 0 .253.17.549.653.456A9.504 9.504 0 0 0 22 12c0-5.247-4.253-9.5-9.5-9.5Z"/>
+              </svg>
             깃허브
           </a>
         </div>
