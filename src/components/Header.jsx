@@ -123,7 +123,6 @@ export default function Header() {
         <div className="md:hidden flex justify-end w-full">
           <button
             className="flex flex-col gap-1.5"
-            style={{ cursor: 'none' }}
             aria-label="메뉴 열기"
             aria-expanded={isOpen}
             aria-controls="mobile-nav"
@@ -146,7 +145,6 @@ export default function Header() {
       >
         <button
           className="absolute top-8 right-8 text-white text-3xl leading-none"
-          style={{ cursor: 'none' }}
           aria-label="메뉴 닫기"
           onClick={closeMenu}
         >

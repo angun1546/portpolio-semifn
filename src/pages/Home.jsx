@@ -11,7 +11,6 @@ import ContactMe from '../components/ContactMe'
 import Footer from '../components/Footer'
 import ScrollToTop from '../components/ScrollToTop'
 import ThemeSwitcher from '../components/ThemeSwitcher'
-import CustomCursor from '../components/CustomCursor'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -42,7 +41,6 @@ export default function Home() {
       <Footer />
       <ThemeSwitcher />
       <ScrollToTop />
-      <CustomCursor />
     </>
   )
 }

@@ -46,12 +46,12 @@
   --fg-accent: #9747ff;
   --card-bg: #f8f8f8;
   --divider: #dbdbdb;
-  --header-bg: rgba(20, 20, 20, 0.82);
+  --header-bg: rgba(20, 20, 20, 0.5);
   --btn-light-bg: rgba(255, 255, 255, 0.852);
   --btn-dark-bg: #222222;
   --btn-glass-bg: rgba(15, 15, 15, 0.28);
   --btn-glass-border: rgba(255, 255, 255, 0.35);
-  --hero-fg: #5d4f75;
+  --hero-fg: #595959;
   --resume-icon-filter: brightness(0) invert(1);
   --resume-btn-glass-bg: rgba(0, 0, 0, 0.55);
   --cursor-color: #1a1a1a;
@@ -70,12 +70,12 @@
   --fg-accent: #b177ff;
   --card-bg: #1e1e1e;
   --divider: #333333;
-  --header-bg: rgba(0, 0, 0, 0.85);
+  --header-bg: rgba(0, 0, 0, 0.5);
   --btn-light-bg: rgba(255, 255, 255, 0.08);
   --btn-dark-bg: #2e2e2e;
   --btn-glass-bg: rgba(255, 255, 255, 0.08);
   --btn-glass-border: rgba(255, 255, 255, 0.18);
-  --hero-fg: #e2d5f8;
+  --hero-fg: #595959;
   --resume-icon-filter: brightness(0) invert(0.9);
   --resume-btn-glass-bg: rgba(0, 0, 0, 0.60);
   --cursor-color: #FFFEF8;
@@ -85,7 +85,7 @@
 [data-theme='purple'] {
   /* Purple Theme Variables (Midnight Purple) */
   --bg: #1a0b2e;
-  --bg-gradient: linear-gradient(180deg, #6d28d9 0%, #3b0764 50%, #0f0520 100%);
+  --bg-gradient: linear-gradient(180deg, #dad5e1 0%, #3b0764 50%, #0f0520 100%);
   --fg: #f0e6ff;
   --fg-near: #ffffff;
   --fg-sub: #c4b5fd;
@@ -93,12 +93,12 @@
   --fg-accent: #d8b4fe;
   --card-bg: rgba(109, 40, 217, 0.18);
   --divider: rgba(167, 139, 250, 0.25);
-  --header-bg: rgba(15, 5, 32, 0.85);
+  --header-bg: rgba(15, 5, 32, 0.5);
   --btn-light-bg: rgba(216, 180, 254, 0.15);
   --btn-dark-bg: #4c1d95;
   --btn-glass-bg: rgba(15, 5, 30, 0.30);
   --btn-glass-border: rgba(216, 180, 254, 0.28);
-  --hero-fg: #ffffff;
+  --hero-fg: #595959;
   --resume-icon-filter: brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(230deg) brightness(1.4);
   --resume-btn-glass-bg: rgba(10, 0, 30, 0.65);
   --cursor-color: #f0e6ff;
@@ -109,7 +109,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  cursor: none !important;
 }
 
 /* 키보드 탐색 포커스 링 — 마우스 사용자에겐 숨기고 키보드 사용자에겐 표시 */
@@ -208,3 +207,48 @@ html.lenis body {
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
 }
+
+/* 모바일·태블릿: 2열 → 1열 */
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .project-content {
+    flex-direction: column !important;
+    gap: 32px !important;
+    align-items: stretch !important;
+  }
+  .project-content > div:first-child,
+  .project-content > div:first-child > div {
+    width: 100% !important;
+    max-width: 100%;
+  }
+  .project-content > div:last-child {
+    width: 100% !important;
+  }
+  .project-item {
+    width: calc(100vw - 48px) !important;
+    padding: 32px 20px !important;
+  }
+}
+
+/* ─── 프로젝트 카드 주변 퍼플 글로우 블롭 ───────────────────── */
+.project-item {
+  isolation: isolate;
+}
+.project-item::before {
+  content: '';
+  position: absolute;
+  inset: -300px;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 20% 60%, color-mix(in srgb, var(--fg-accent) 55%, transparent) 0%, transparent 12%),
+    radial-gradient(circle at 85% 20%, color-mix(in srgb, var(--fg-accent) 40%, transparent) 0%, transparent 10%);
+  filter: blur(30px);
+  pointer-events: none;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+
+

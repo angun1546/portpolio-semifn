@@ -7,6 +7,12 @@ import Btn from './Btn'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const GLASS_STYLE = {
+  backdropFilter: 'blur(20px)',
+  WebkitBackdropFilter: 'blur(20px)',
+  border: '1px solid var(--btn-glass-border)',
+}
+
 import imgScreen from '../assets/images/screen1.png'
 import imgScreen2 from '../assets/images/screen2.png'
 import imgScreen3 from '../assets/images/screen3.png'
@@ -71,7 +77,7 @@ const PROJECTS = [
     problem:
       '영상 내 \'스노윙 치킨\' 자막 생성 시, 한글 \'스\'의 형태를 AI가 동물 \'소\'로 오인하여 글자 대신 소가 등장하는 그래픽 오류가 발생했으나 텍스트와 이미지를 분리하여 인식하도록 프롬프트를 재구성하고, \'cow\' 등을 부정 프롬프트로 설정해 형태적 왜곡을 차단했습니다.',
     links: {
-      
+
       video: 'https://drive.google.com/file/d/16w1DjmJu9rHk0ZGRGL6FVvuLNN9NtA1k/view?usp=sharing',
       videoLabel: '영상보기',
       plan: 'https://drive.google.com/file/d/1hiqnu3qsvy70YyCf7mdhjsYjz4Fy57_O/view?usp=sharing',
@@ -148,107 +154,98 @@ function InfoRow({ label, value }) {
   )
 }
 
+function ProjectLinks(project) {
+  const hasSite = project.links.site && project.links.site !== '#'
+  const hasGithub = !!project.links.github
+  const hasVideo = !!project.links.video
+  const primaryIs = hasSite ? 'site' : hasGithub ? 'github' : hasVideo ? 'video' : 'plan'
+
+  return (
+    <div style={{ display: 'flex', gap: '12px', marginTop: '12px', flexWrap: 'nowrap', justifyContent: 'flex-start' }}>
+      {hasSite && (
+        <Btn
+          variant={primaryIs === 'site' ? 'cta' : 'glass'}
+          icon="external-link-alt"
+          label="사이트"
+          href={project.links.site}
+          target="_blank"
+          rel="noreferrer"
+          style={primaryIs !== 'site' ? GLASS_STYLE : undefined}
+        />
+      )}
+      {hasGithub && (
+        <Btn
+          variant={primaryIs === 'github' ? 'cta' : 'glass'}
+          icon="git"
+          label="깃허브"
+          href={project.links.github}
+          target="_blank"
+          rel="noreferrer"
+          style={primaryIs !== 'github' ? GLASS_STYLE : undefined}
+        />
+      )}
+      {hasVideo && (
+        <Btn
+          variant={primaryIs === 'video' ? 'cta' : 'glass'}
+          icon="video"
+          label={project.links.videoLabel ?? '광고영상'}
+          href={project.links.video}
+          target="_blank"
+          rel="noreferrer"
+          style={primaryIs !== 'video' ? GLASS_STYLE : undefined}
+        />
+      )}
+      <Btn
+        variant={primaryIs === 'plan' ? 'cta' : 'glass'}
+        icon="file"
+        label="기획서"
+        href={project.links.plan}
+        target="_blank"
+        rel="noreferrer"
+        style={primaryIs !== 'plan' ? GLASS_STYLE : undefined}
+      />
+    </div>
+  )
+}
+
 function ProjectItem({ project, index }) {
   const itemRef = useRef(null)
   const screenRef = useRef(null)
 
-  useEffect(() => {
-    const item = itemRef.current
-    const screen = screenRef.current
-    if (!item || !screen) return
-
-    const handleMouseMove = (e) => {
-      const rect = item.getBoundingClientRect()
-      const cx = rect.left + rect.width / 2
-      const cy = rect.top + rect.height / 2
-      const nx = (e.clientX - cx) / (rect.width / 2)   // -1 ~ 1
-      const ny = (e.clientY - cy) / (rect.height / 2)  // -1 ~ 1
-
-      gsap.to(screen, {
-        rotateY: nx * 14,
-        rotateX: -ny * 9,
-        x: nx * 18,
-        y: ny * 10,
-        scale: 1.04,
-        transformPerspective: 900,
-        transformOrigin: 'center center',
-        duration: 0.5,
-        ease: 'power2.out',
-      })
-    }
-
-    const handleMouseLeave = () => {
-      gsap.to(screen, {
-        rotateY: 0,
-        rotateX: 0,
-        x: 0,
-        y: 0,
-        scale: 1,
-        duration: 0.7,
-        ease: 'power3.out',
-      })
-    }
-
-    item.addEventListener('mousemove', handleMouseMove)
-    item.addEventListener('mouseleave', handleMouseLeave)
-
-    // ─── Effect 3: SCROLL SCRUB ───────────────────────────────
-    // 이미지가 스크롤에 연동되어 위로 살짝 떠오르는 시차 효과
-    gsap.fromTo(
-      screen,
-      { y: 30 },
-      {
-        y: -30,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: item,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1.5,
-        },
-      }
-    )
-
-    return () => {
-      item.removeEventListener('mousemove', handleMouseMove)
-      item.removeEventListener('mouseleave', handleMouseLeave)
-      ScrollTrigger.getAll()
-        .filter(st => st.vars.trigger === item)
-        .forEach(st => st.kill())
-    }
-  }, [])
-
   // 프로젝트별 숫자 위치 — 스크린 상단에 살짝 걸쳐 숫자가 보이는 정도
-  const NUM_POS = [
-    { top: '-10px',  left: '-25px' },  // 01
-    { top: '130px',  left: '-25px' },  // 02
-    { top: '215px',  left: '-25px' },  // 03
-    { top: '190px',  left: '-25px' },  // 04
-    { top: '290px',  left: '-25px' },  // 05
-  ]
-  const numPos = NUM_POS[index] ?? NUM_POS[0]
+  const numPos = { top: '-40px', left: '-20px' }
 
   return (
     <div
       ref={itemRef}
       className="project-item"
-      style={{ position: 'relative', width: 'fit-content', margin: '0 auto', paddingTop: index > 0 ? '230px' : '0' }}
+      style={{
+        position: 'relative',
+        width: 'fit-content',
+        margin: '0 auto',
+        marginBottom: '80vh',
+        background: 'color-mix(in srgb, var(--bg) 30%, transparent)',
+        backdropFilter: 'blur(30px)',
+        WebkitBackdropFilter: 'blur(30px)',
+        border: '1px solid color-mix(in srgb, var(--fg) 6%, transparent)',
+        borderRadius: '28px',
+        padding: '48px 40px',
+        boxShadow: '0 30px 60px -30px rgba(0,0,0,0.15), 0 2px 6px rgba(0,0,0,0.03)',
+      }}
     >
-      {/* 번호 — 스크린 상단에 걸치게 배치 */}
+      {/* 번호 — 카드 좌상단 바깥으로 걸침 */}
       <div
         style={{
           position: 'absolute',
           top: numPos.top,
           left: numPos.left,
-          zIndex: 0,
+          zIndex: 2,
           fontFamily: 'var(--font-sans)',
-          fontWeight: 800,
-          fontSize: '98px',
+          fontWeight: 900,
+          fontSize: '120px',
           color: 'var(--fg-accent)',
-          letterSpacing: '-2px',
-          textShadow:
-            '14px 14px 21.213px rgba(0,0,0,0.2), 0.445px 0.445px 0.629px rgba(0,0,0,0.26)',
-          lineHeight: 1.12,
+          letterSpacing: '-4px',
+          lineHeight: 1,
           userSelect: 'none',
           pointerEvents: 'none',
         }}
@@ -258,6 +255,7 @@ function ProjectItem({ project, index }) {
 
       {/* 프로젝트 본문 */}
       <div
+        className="project-content"
         style={{
           position: 'relative',
           zIndex: 1,
@@ -268,7 +266,7 @@ function ProjectItem({ project, index }) {
         }}
       >
         {/* 왼쪽: 스크린샷 */}
-        <div ref={screenRef} style={{ flexShrink: 0, width: '629px', willChange: 'transform' }}>
+        <div ref={screenRef} style={{ flexShrink: 0, width: '629px' }}>
           {project.videoSrc ? (
             <div
               style={{
@@ -350,7 +348,7 @@ function ProjectItem({ project, index }) {
         </div>
 
         {/* 오른쪽: 정보 */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '496px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '620px' }}>
           {/* 타이틀 */}
           <Link
             to={`/projects/${project.number}`}
@@ -471,63 +469,7 @@ function ProjectItem({ project, index }) {
           </div>
 
           {/* 버튼 */}
-          {(() => {
-            const hasSite = project.links.site && project.links.site !== '#'
-            const hasGithub = !!project.links.github
-            const hasVideo = !!project.links.video
-            const primaryIs = hasSite ? 'site' : hasGithub ? 'github' : hasVideo ? 'video' : 'plan'
-            const glassStyle = {
-              backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)',
-              border: '1px solid var(--btn-glass-border)',
-            }
-            return (
-              <div style={{ display: 'flex', gap: '16px', marginTop: '12px', flexWrap: 'wrap', justifyContent: 'flex-start' }}>
-                {hasSite && (
-                  <Btn
-                    variant={primaryIs === 'site' ? 'cta' : 'glass'}
-                    icon="external-link-alt"
-                    label="사이트"
-                    href={project.links.site}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={primaryIs !== 'site' ? glassStyle : undefined}
-                  />
-                )}
-                {hasGithub && (
-                  <Btn
-                    variant={primaryIs === 'github' ? 'cta' : 'glass'}
-                    icon="git"
-                    label="깃허브"
-                    href={project.links.github}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={primaryIs !== 'github' ? glassStyle : undefined}
-                  />
-                )}
-                {hasVideo && (
-                  <Btn
-                    variant={primaryIs === 'video' ? 'cta' : 'glass'}
-                    icon="video"
-                    label={project.links.videoLabel ?? '광고영상'}
-                    href={project.links.video}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={primaryIs !== 'video' ? glassStyle : undefined}
-                  />
-                )}
-                <Btn
-                  variant={primaryIs === 'plan' ? 'cta' : 'glass'}
-                  icon="file"
-                  label="기획서"
-                  href={project.links.plan}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={primaryIs !== 'plan' ? glassStyle : undefined}
-                />
-              </div>
-            )
-          })()}
+          {ProjectLinks(project)}
         </div>
       </div>
     </div>
@@ -551,27 +493,17 @@ export default function Projects() {
         },
       })
 
-      // 프로젝트 아이템 — 진입 애니메이션 + 개별 PIN
-      gsap.utils.toArray('.project-item').forEach((el) => {
-        // 진입 페이드업
-        gsap.from(el, {
-          opacity: 0,
-          y: 60,
-          duration: 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 85%',
-          },
-        })
-
-        // 뷰포트 상단에 닿으면 500px 동안 고정
+      // 카드 스택 — 각 카드를 다음 카드가 올라올 때까지 고정
+      const cards = gsap.utils.toArray('.project-item')
+      cards.forEach((el, i) => {
+        const next = cards[i + 1]
         ScrollTrigger.create({
           trigger: el,
-          start: 'top top',
-          end: '+=500',
+          start: 'top 120px',
+          endTrigger: next ?? el,
+          end: next ? 'top 120px' : 'bottom 120px',
           pin: true,
-          pinSpacing: true,
+          pinSpacing: false,
         })
       })
     }, sectionRef)
@@ -583,10 +515,10 @@ export default function Projects() {
     <section
       id="projects"
       ref={sectionRef}
-      style={{ background: 'transparent', padding: '128px 0 192px' }}
+      style={{ background: 'transparent', padding: 'clamp(48px, 8vw, 128px) 0 clamp(80px, 12vw, 192px)' }}
     >
       {/* Projects 섹션 타이틀 */}
-      <div className="projects-title" style={{ marginBottom: '200px' }}>
+      <div className="projects-title" style={{ marginBottom: 'clamp(40px, 6vw, 100px)' }}>
         <SectionDivider iconWhite />
         <h2
           style={{

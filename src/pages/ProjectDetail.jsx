@@ -49,7 +49,7 @@ export default function ProjectDetail() {
             color: 'white',
             fontFamily: 'var(--font-sans)',
             fontSize: '16px',
-            cursor: 'none',
+            cursor: 'pointer',
             opacity: 0.8,
           }}
         >
@@ -60,8 +60,6 @@ export default function ProjectDetail() {
       <main
         style={{
           minHeight: '100dvh',
-          paddingTop: '120px',
-          paddingBottom: '100px',
           maxWidth: '1088px',
           margin: '0 auto',
           padding: '120px clamp(24px, 4vw, 0px) 100px',

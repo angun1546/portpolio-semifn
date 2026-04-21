@@ -1,8 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
 import Home from './pages/Home'
-import ProjectDetail from './pages/ProjectDetail'
 
-// React Router v7 Data Mode (createBrowserRouter)
+const ProjectDetail = lazy(() => import('./pages/ProjectDetail'))
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -10,7 +11,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/projects/:id',
-    element: <ProjectDetail />,
+    element: (
+      <Suspense fallback={null}>
+        <ProjectDetail />
+      </Suspense>
+    ),
   },
 ])
 
