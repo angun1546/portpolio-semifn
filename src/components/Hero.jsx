@@ -133,7 +133,7 @@ export default function Hero() {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "12px",
+            gap: "24px",
             paddingTop: "80px",
             flex: "1 1 0",
             minWidth: 0,
@@ -160,14 +160,14 @@ export default function Hero() {
           </div>
 
           {/* 2행 — "경험을 조율하는" */}
-          <div style={{ fontSize: ROW_FONT, height: "1.3em", overflow: "visible" }}>
+          <div style={{ fontSize: ROW_FONT, whiteSpace: "nowrap" }}>
             <span style={SPAN_STYLE}>
               <SplitChars text="경험을 조율하는" charClass="r2a" />
             </span>
           </div>
 
           {/* 3행 — "안건 입니다" */}
-          <div style={{ fontSize: ROW_FONT, height: "1.3em", overflow: "visible" }}>
+          <div style={{ fontSize: ROW_FONT, whiteSpace: "nowrap" }}>
             <span style={SPAN_STYLE}>
               <SplitChars text="안건 입니다" charClass="r2b" />
             </span>
